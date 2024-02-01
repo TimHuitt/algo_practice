@@ -36,6 +36,7 @@ targetSum = 10
 // console.log(twoNumberSum(array, targetSum))
 
 //_________________________________ //
+//_________________________________ //
 
 /// Determine if the second array is a subsequence of the first ///
 
@@ -85,7 +86,7 @@ sequence = [1, 6, -1, 10]
 // console.log(isValidSubsequence(array, sequence))
 
 //_________________________________ //
-
+//_________________________________ //
 
 /// Replace the values of an ascending array with their square ///
 /// sorted ascending ///
@@ -106,10 +107,10 @@ function sortedSquaredArray(array) {
 
   for (let i = array.length; i > 0; i--) {
     if (Math.abs(array[left]) > Math.abs(array[right])) {
-      squared.push(array[left] * array[left])
+      squared.unshift(array[left] * array[left])
       left++
     } else {
-      squared.push(array[right] * array[right])
+      squared.unshift(array[right] * array[right])
       right--
     }
   }
@@ -118,5 +119,54 @@ function sortedSquaredArray(array) {
 
 
 array = [1, 2, 3, 5, 6, 8, 9]
+// array = [-10, -5, 0, 5, 10]
 
 // console.log(sortedSquaredArray(array))
+
+//_________________________________ //
+//_________________________________ //
+
+/// Find the winner if [homeTeam = 1, awayTeam = 0] and each win awards 3 points///
+
+function tournamentWinner(competitions, results) {
+  const score = {}
+  // loop results
+  for (let i = 0; i < results.length; i++) {
+    const home = competitions[i][0]
+    const away = competitions[i][1]
+
+    // track winner score (+3)
+    if (results[i]) {
+      score.hasOwnProperty(home) 
+        ? score[home] += 3
+        : score[home] = 3
+    } else {
+      score.hasOwnProperty(away) 
+        ? score[away] += 3
+        : score[away] = 3
+    }
+  }
+
+  // return team with highest score
+  return Object.keys(score).reduce((a, b) => score[a] > score[b] ? a : b)
+}
+
+competitions = [
+  ["HTML", "C#"],
+  ["C#", "Python"], 
+  ["Python", "HTML"],
+]
+
+results = [0, 1, 1]
+
+console.log(tournamentWinner(competitions, results))
+
+//_________________________________ //
+//_________________________________ //
+
+/// Find the winner if [homeTeam = 1, awayTeam = 0] and each win awards 3 points///
+
+function nonConstructibleChange(coins) {
+  // Write your code here.
+  return 1;
+}
