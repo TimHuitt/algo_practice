@@ -157,9 +157,9 @@ competitions = [
   ["Python", "HTML"],
 ]
 
-results = [0, 1, 1]
+results = [0, 0, 1]
 
-console.log(tournamentWinner(competitions, results))
+// console.log(tournamentWinner(competitions, results))
 
 //_________________________________ //
 //_________________________________ //
@@ -167,6 +167,29 @@ console.log(tournamentWinner(competitions, results))
 /// Find the winner if [homeTeam = 1, awayTeam = 0] and each win awards 3 points///
 
 function nonConstructibleChange(coins) {
-  // Write your code here.
-  return 1;
+  let minChange = 0
+  coins.sort((a, b) => a-b)
+
+  // loop coins in ascending order
+  for (let i = 0; i < coins.length; i++) {
+
+    // if coin is greater than max + 1
+    if (coins[i] > minChange + 1) {
+      
+      // return min + 1
+      return minChange + 1
+
+    // if coin is less than max
+    } else {
+
+      // add to min + 1
+      minChange += coins[i]
+    }
+  }
+  
+  // return min
+  return minChange + 1
 }
+
+coins = [5, 7, 1, 1, 2, 3, 22]
+console.log(nonConstructibleChange(coins))
