@@ -1,6 +1,6 @@
 /// Find 2 numbers in array that equal target ///
 
-// first solution
+// // first solution
 // const twoNumberSum = (array, targetSum) => {
 //   // loop array and compare each value to remaining values
 //   while (array) {
@@ -40,7 +40,7 @@ targetSum = 10
 
 /// Determine if the second array is a subsequence of the first ///
 
-// first solution
+// // first solution
 // function isValidSubsequence(array, sequence) {
 //   let arr = [...array]
 //   let seq = [...sequence]
@@ -91,15 +91,13 @@ sequence = [1, 6, -1, 10]
 /// Replace the values of an ascending array with their square ///
 /// sorted ascending ///
 
-// first solution
-
+// // first solution
 // function sortedSquaredArray(array) {
 //   return array.map((num) => num * num)
 //     .sort(function(a, b){return a-b})
 // }
 
 // improved solution
-
 function sortedSquaredArray(array) {
   const squared = []
   let left = 0
@@ -164,7 +162,7 @@ results = [0, 0, 1]
 //_________________________________ //
 //_________________________________ //
 
-/// Find the winner if [homeTeam = 1, awayTeam = 0] and each win awards 3 points///
+/// Find the minimum amount of change that can be created by combining the coins provided ///
 
 function nonConstructibleChange(coins) {
   let minChange = 0
@@ -192,4 +190,119 @@ function nonConstructibleChange(coins) {
 }
 
 coins = [5, 7, 1, 1, 2, 3, 22]
-console.log(nonConstructibleChange(coins))
+// console.log(nonConstructibleChange(coins))
+
+//_________________________________ //
+//_________________________________ //
+
+/// reverse the string ///
+
+const reverse = (str) => {
+  newString = ''
+  for (let i = str.length - 1; i > -1; i--) {
+    newString += str[i]
+  }
+  return newString
+}
+
+// console.log(reverse('hello'))
+
+//_________________________________ //
+//_________________________________ //
+
+/// transpose matrix ///
+
+function transposeMatrix(matrix) {
+  let result = []
+    // if first value is array
+    if (Array.isArray(matrix[0])) {
+      // loop sub array
+      for (let i = 0; i < matrix[0].length; i++) {
+        // loop base array
+        for (let j = 0; j < matrix.length; j++) {
+          // save or push each value
+          result[i] ? result[i].push(matrix[j][i]) : result[i] = [matrix[j][i]]
+        }
+      }
+    // else if first value is not array
+    } else {
+      // loop array
+      for (let i = 0; i < matrix.length; i++) {
+        //save each value
+        result[i] = [matrix[i]]
+      }
+    }
+  // return transposed array
+  return result
+}
+
+// console.log(transposeMatrix([1, 2]))
+// 
+// console.log(transposeMatrix(
+//   [
+//     [1, 2], 
+//     [3, 4], 
+//     [5, 6]
+//   ]
+// ))
+
+
+const generateHashFromString = (str) => 
+  str.split('')
+    .reduce((acc, char) => acc + char
+    .charCodeAt(0)
+  ,0) % 1000;
+
+// console.log(generateHashFromString('example'))
+// console.log(generateHashFromString('anotherExample'))
+
+function sumArray(numbers) {
+  return numbers.reduce((acc, cur) => acc + cur, 0);
+}
+
+
+// console.log(sumArray([1,2,3,4]))
+// console.log(sumArray([]))
+// console.log(sumArray([5,-2,7]))
+// console.log(sumArray([-1,-1,-1,-1]))
+
+
+const solution1 = (numbers) => {
+  let largest = 0
+  if (numbers.length > 0) {
+      for (let number = 0; number < numbers.length; number++) {
+        console.log(largest <= numbers[number])
+          largest = largest <= numbers[number] ? numbers[number] : largest
+      }
+  } else {
+      return 0
+  }
+  return largest
+};
+
+
+// console.log(solution([7,2,6,3]))
+
+
+const solution = (arr) => {
+  if (arr.length <= 1) return ''
+  let left = 0
+  let right = 0
+
+  cleaned = arr.filter((i) => i > 0)
+  
+  for (let i = 0; i < cleaned.length; i++) {
+    if (i > 0 && i % 2 && cleaned[i] !== -1) {
+        left += cleaned[i]
+    } else if (i > 0 && i % 2 === 0 && cleaned[i] !== -1) {
+        right += cleaned[i]
+      }
+  }
+  if (left > right) return "Left"
+  if (right > left) return "Right"
+  return ""
+};
+
+// console.log(solution([3,6,2,9,-1,10]))
+// console.log(solution([3,3,10,4,12]))
+// console.log(solution([1, 10, 5, 1, 0, 6]))
