@@ -21,51 +21,67 @@ class Solution(object):
 # write a function that takes a BST (binary search tree) and a target integer. return the closest value to the target value contained within the bst
 
 def findClosestValueInBst(tree, target):
-    pass
-
-def build_tree(nodes):
-  map = {node['id']: node for node in nodes}
+  near = target
+  data = tree['nodes']
+  
+  sorted = dict(sorted(data.items()))
+  print (data)
+  # for node in tree['nodes']:
+     
+  #    diff = node['value'] - target
+  #    if diff == 0 : return node['value']
+  #    near = node['value'] if diff > 0 and diff < near else near
   
   
-  return map
+  return near
 
-# This is the class of the input tree. Do not edit.
+
 class BST:
     def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
 
-nodes = [
-  {"id": "10", "left": "5", "right": "15", "value": 10},
-  {"id": "15", "left": "13", "right": "22", "value": 15},
-  {"id": "22", "left": None, "right": None, "value": 22},
-  {"id": "13", "left": None, "right": "14", "value": 13},
-  {"id": "14", "left": None, "right": None, "value": 14},
-  {"id": "5", "left": "2", "right": "5-2", "value": 5},
-  {"id": "5-2", "left": None, "right": None, "value": 5},
-  {"id": "2", "left": "1", "right": None, "value": 2},
-  {"id": "1", "left": None, "right": None, "value": 1}
-]
 
-# {
-#   "tree": {
-#     "nodes": [
-#       {"id": "10", "left": "5", "right": "15", "value": 10},
-#       {"id": "15", "left": "13", "right": "22", "value": 15},
-#       {"id": "22", "left": null, "right": null, "value": 22},
-#       {"id": "13", "left": null, "right": "14", "value": 13},
-#       {"id": "14", "left": null, "right": null, "value": 14},
-#       {"id": "5", "left": "2", "right": "5-2", "value": 5},
-#       {"id": "5-2", "left": null, "right": null, "value": 5},
-#       {"id": "2", "left": "1", "right": null, "value": 2},
-#       {"id": "1", "left": null, "right": null, "value": 1}
-#     ],
-#     "root": "10"
-#   },
-#   "target": 12
-# }
+bst = {
+  "tree": {
+    "nodes": [
+      {"id": "10", "left": "5", "right": "15", "value": 10},
+      {"id": "15", "left": "13", "right": "22", "value": 15},
+      {"id": "22", "left": None, "right": None, "value": 22},
+      {"id": "13", "left": None, "right": "14", "value": 13},
+      {"id": "14", "left": None, "right": None, "value": 14},
+      {"id": "5", "left": "2", "right": "5-2", "value": 5},
+      {"id": "5-2", "left": None, "right": None, "value": 5},
+      {"id": "2", "left": "1", "right": None, "value": 2},
+      {"id": "1", "left": None, "right": None, "value": 1}
+    ],
+    "root": "10"
+  },
+  "target": 12
+}
 
-tree = build_tree(nodes)
+# print(bst['tree']['nodes'][1])
+print(findClosestValueInBst(bst['tree'], bst['target']))
 
-print(tree)
+
+
+def solution(arr):
+    left = 0
+    right = 0
+    isLeft = True
+    
+    for index, num in enumerate(arr):
+        if index != 0 and num > 0:
+            if isLeft:
+                left += num
+                isLeft = False
+            else:
+                right += num
+                isLeft = True
+                
+    
+    if left > right: return "Left"
+    if right > left: return "Right"
+    return ""
+    

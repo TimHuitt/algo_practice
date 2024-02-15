@@ -306,3 +306,5 @@ const solution = (arr) => {
 // console.log(solution([3,6,2,9,-1,10]))
 // console.log(solution([3,3,10,4,12]))
 // console.log(solution([1, 10, 5, 1, 0, 6]))
+
+
