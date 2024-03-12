@@ -1,3 +1,9 @@
+# _________________________________ //
+# _________________________________ //
+
+# find the the sum of all numbers except 7 and 8 and any numbers between them
+
+
 def sum78(nums):
   total = 0
   inSeq = False
@@ -33,7 +39,7 @@ class Solution(object):
 # _________________________________ //
 # _________________________________ //
 
-# write a function that takes a BST (binary search tree) and a target integer. return the closest value to the target value contained within the bst
+# take a BST (binary search tree) and a target integer. return the closest value to the target value contained within the bst
 
 def findClosestValueInBst(tree, target):
     
@@ -58,7 +64,7 @@ def findClosestValueInBst(tree, target):
 # _________________________________ //
 # _________________________________ //
 
-# write a function that takes a binary tree and returns a list of it's branch sums ordered from left to right
+# take a binary tree and returns a list of it's branch sums ordered from left to right
 
 def branchSums(node):
   
@@ -87,6 +93,11 @@ def branchSums(node):
 
   return sums
 
+
+# _________________________________ //
+# _________________________________ //
+
+# 
 
 
 
