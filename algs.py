@@ -1,3 +1,18 @@
+def sum78(nums):
+  total = 0
+  inSeq = False
+  for num in nums:
+    if num == 7:
+      inSeq = True
+    elif num == 8 and inSeq:
+      inSeq = False
+    elif not inSeq:
+      total += num
+
+  return total
+
+# print(sum78([1,2,7,10,7, 15,8,1]))
+
 # _________________________________ //
 # _________________________________ //
 
@@ -21,20 +36,65 @@ class Solution(object):
 # write a function that takes a BST (binary search tree) and a target integer. return the closest value to the target value contained within the bst
 
 def findClosestValueInBst(tree, target):
-  near = target
-  data = tree['nodes']
-  
-  sorted = dict(sorted(data.items()))
-  print (data)
-  # for node in tree['nodes']:
-     
-  #    diff = node['value'] - target
-  #    if diff == 0 : return node['value']
-  #    near = node['value'] if diff > 0 and diff < near else near
-  
-  
-  return near
+    
+    def getClosest(node, target, closest):
 
+        if not node : return closest
+            
+        if abs(target - closest) > abs(target - node.value):
+            closest = node.value
+
+        if target < node.value and node.left:
+            closest = getClosest(node.left, target, closest)
+
+        if target > node.value and node.right:
+            closest = getClosest(node.right, target, closest)
+
+        return closest
+    
+    return(getClosest(tree, target, tree.value))
+    
+
+# _________________________________ //
+# _________________________________ //
+
+# write a function that takes a binary tree and returns a list of it's branch sums ordered from left to right
+
+def branchSums(node):
+  
+  # set global sums variable
+  # create helper function for recursive actions
+  # sum node left branches
+  # sum node right branches
+  # stop when final leaf reached
+
+  sums = []
+
+  def getSums(node, running, sums):
+    
+    if not node : return
+
+    running += node.value
+
+    if not node.left and not node.right:
+       sums.append(running)
+       return
+
+    getSums(node.left, running, sums)
+    getSums(node.right, running, sums)
+
+  getSums(node, 0, sums)
+
+  return sums
+
+
+
+
+
+
+# _________________________________ //
+# _________________________________ //
+# Binary Tree Test Data
 
 class BST:
     def __init__(self, value):
@@ -42,6 +102,27 @@ class BST:
         self.left = None
         self.right = None
 
+    def __str__(self):
+        return f'BST(value={self.value}, left={self.left}, right={self.right})'
+
+
+def buildBSTFromDict(nodeList):
+    # Create a mapping from id to BST node
+    nodeMap = {}
+    for node in nodeList:
+        nodeMap[node["id"]] = BST(node["value"])
+    
+    # Set the root of the BST
+    root = nodeMap[nodeList[0]["id"]]
+    
+    # Link nodes to their left and right children
+    for node in nodeList:
+        if node["left"] is not None:
+            nodeMap[node["id"]].left = nodeMap[node["left"]]
+        if node["right"] is not None:
+            nodeMap[node["id"]].right = nodeMap[node["right"]]
+    
+    return root
 
 bst = {
   "tree": {
@@ -61,27 +142,6 @@ bst = {
   "target": 12
 }
 
-# print(bst['tree']['nodes'][1])
-print(findClosestValueInBst(bst['tree'], bst['target']))
+# print(findClosestValueInBst(buildBSTFromDict(bst["tree"]["nodes"]), bst['target']))
 
-
-
-def solution(arr):
-    left = 0
-    right = 0
-    isLeft = True
-    
-    for index, num in enumerate(arr):
-        if index != 0 and num > 0:
-            if isLeft:
-                left += num
-                isLeft = False
-            else:
-                right += num
-                isLeft = True
-                
-    
-    if left > right: return "Left"
-    if right > left: return "Right"
-    return ""
-    
+print(branchSums(buildBSTFromDict(bst["tree"]["nodes"])))
