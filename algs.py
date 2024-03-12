@@ -97,10 +97,26 @@ def branchSums(node):
 # _________________________________ //
 # _________________________________ //
 
-# 
+# take a binary tree and return the sum of it's nodes' depths
 
+def nodeDepths(root):
+  # create total depth var
+  depths = []
+    
+  # create helper for node iterations
+  def getDepths(node, depth):
+    if not node : return
+        
+    # track/log current depth for each node
+    depths.append(depth)
+    depth += 1
+    
+    # continue for left and right depths
+    getDepths(node.left, depth)
+    getDepths(node.right, depth)
 
-
+  getDepths(root, 0)
+  return sum(depths)
 
 
 # _________________________________ //
@@ -135,24 +151,48 @@ def buildBSTFromDict(nodeList):
     
     return root
 
+# bst = {
+#   "tree": {
+#     "nodes": [
+#       {"id": "10", "left": "5", "right": "15", "value": 10},
+#       {"id": "15", "left": "13", "right": "22", "value": 15},
+#       {"id": "22", "left": None, "right": None, "value": 22},
+#       {"id": "13", "left": None, "right": "14", "value": 13},
+#       {"id": "14", "left": None, "right": None, "value": 14},
+#       {"id": "5", "left": "2", "right": "5-2", "value": 5},
+#       {"id": "5-2", "left": None, "right": None, "value": 5},
+#       {"id": "2", "left": "1", "right": None, "value": 2},
+#       {"id": "1", "left": None, "right": None, "value": 1}
+#     ],
+#     "root": "10"
+#   },
+#   "target": 12
+# }
+
 bst = {
   "tree": {
     "nodes": [
-      {"id": "10", "left": "5", "right": "15", "value": 10},
-      {"id": "15", "left": "13", "right": "22", "value": 15},
-      {"id": "22", "left": None, "right": None, "value": 22},
-      {"id": "13", "left": None, "right": "14", "value": 13},
-      {"id": "14", "left": None, "right": None, "value": 14},
-      {"id": "5", "left": "2", "right": "5-2", "value": 5},
-      {"id": "5-2", "left": None, "right": None, "value": 5},
-      {"id": "2", "left": "1", "right": None, "value": 2},
-      {"id": "1", "left": None, "right": None, "value": 1}
+      {"id": "1", "left": "2", "right": "8", "value": 1},
+      {"id": "2", "left": "3", "right": None, "value": 2},
+      {"id": "3", "left": "4", "right": None, "value": 3},
+      {"id": "4", "left": "5", "right": None, "value": 4},
+      {"id": "5", "left": "6", "right": None, "value": 5},
+      {"id": "6", "left": None, "right": "7", "value": 6},
+      {"id": "7", "left": None, "right": None, "value": 7},
+      {"id": "8", "left": None, "right": "9", "value": 8},
+      {"id": "9", "left": None, "right": "10", "value": 9},
+      {"id": "10", "left": None, "right": "11", "value": 10},
+      {"id": "11", "left": None, "right": "12", "value": 11},
+      {"id": "12", "left": "13", "right": None, "value": 12},
+      {"id": "13", "left": None, "right": None, "value": 13}
     ],
-    "root": "10"
-  },
-  "target": 12
+    "root": "1"
+  }
 }
+
 
 # print(findClosestValueInBst(buildBSTFromDict(bst["tree"]["nodes"]), bst['target']))
 
-print(branchSums(buildBSTFromDict(bst["tree"]["nodes"])))
+# print(branchSums(buildBSTFromDict(bst["tree"]["nodes"])))
+
+print(nodeDepths(buildBSTFromDict(bst["tree"]["nodes"])))
