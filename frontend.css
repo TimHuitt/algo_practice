@@ -1,3 +1,6 @@
+
+/* make a rainbow circle */
+
 :root {
   --red: #ff0000;
   --orange: #ffa500;
@@ -34,4 +37,123 @@
   border-radius: 50%;
   border: 25px solid var(--blue);
   background-color: var(--purple);
+}
+
+
+
+/* make a menu */
+
+:root {
+  --maroon: #6e072d;
+  --maroon-light: #b90e4d;
+  --white: #fff;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  color: var(--white);
+  background-color: var(--maroon)
+}
+ul {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+li {
+  display: flex;
+  align-items: center;
+  padding: 1em 1.5em;
+  cursor: pointer;
+  border-right: 2px solid var(--white);
+}
+li:last-child {
+  border-right: none;
+}
+li:hover {
+  background-color: var(--maroon-light)
+}
+
+
+/* make a pig! */
+
+:root {
+  --pink: #ffc0cb;
+  --pink-dark: #f57187;
+  --black: #000;
+  --white: #fff;
+}
+.head {
+  position: relative;
+  width: 200px; 
+  height: 200px;
+  background: var(--pink);
+  border-radius: 50%;
+  margin-top: 20px;
+  border: 5px solid var(--black);
+}
+.head > div:first-child {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: calc(100% - 20px);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+.ear {
+  width: 50px;
+  height: 50px;
+  border: 5px solid var(--black);
+  background-color: var(--pink);
+  border-radius: 50%;
+  z-index: -1;
+}
+.head > div:nth-child(2) {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: calc(100% - 60px);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+}
+.eye {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 50%;
+  border: 2px solid var(--black);
+}
+.pupil {
+  height: 50%;
+  width: 50%;
+  background-color: var(--black);
+  border-radius: 50%;
+}
+.nose {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 30px;
+  width: 100px;
+  height: 60px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: var(--pink-dark);
+  border-radius: 35%;
+  border: 2px solid var(--black);
+}
+.nostril {
+  height: 50%;
+  width: 25%;
+  background-color: var(--black);
+  border-radius: 50%;
 }
