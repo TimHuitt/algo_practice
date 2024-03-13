@@ -159,6 +159,7 @@ li:hover {
 }
 
 
+/* make an order form */
 
 :root {
   --wrapper-border-radius: 12px;
@@ -192,4 +193,117 @@ li:hover {
   --button-border-radius: 8px;
   --button-background-color: #02203c;
 }
+#wrapper {
+  position: relative;
+  border-radius: var(--wrapper-border-radius);
+  background-color: var(--wrapper-background-color);
+  padding: var(--wrapper-padding);
+}
+
+ol {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  text-align: center;
+  list-style-type: none;
+  counter-reset: items;
+}
+ol li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+ol li::before {
+  counter-increment: items;
+  content: counter(items);
+  width: var(--circle-width);
+  height: var(--circle-width);
+  font-size: var(--circle-font-size);
+  border-radius: 50%;
+  border: var(--circle-border-width) solid black;
+  background-color: white;
+  margin: 0 auto;
+  margin-bottom: var(--circle-bottom-margin);
+}
+ol li::after {
+  content: "";
+  position: absolute;
+  top: calc(var(--circle-radius) + var(--circle-border-width) - (var(--divider-line-height) / 2));
+  left: calc(50% + (var(--circle-radius)));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: calc(100% - var(--circle-width));
+  height: var(--divider-line-height);
+  background-color: black;
+}
+ol li:last-child::after {
+  display: none;
+}
+.selected::before {
+  color: white;
+  background-color: var(--selected-background-color);
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+ul li {
+  display: flex;
+  align-items: center;
+  height: var(--product-offering-height);
+  padding: var(--product-offering-padding);
+  margin: var(--product-offering-vertical-margin) 0;
+  font-weight: bold;
+  border-radius: var(--product-offering-border-radius);
+  background-color: white;
+}
+ul li label {
+  margin-left: var(--label-left-margin);
+}
+
+.blue-product {
+  color: var(--blue-product-color);
+  border-left: var(--product-offering-left-border-size) solid var(--blue-product-color);
+}
+.red-product {
+  color: var(--red-product-color);
+  border-left: var(--product-offering-left-border-size) solid var(--red-product-color);
+}
+.orange-product {
+  color: var(--orange-product-color);
+  border-left: var(--product-offering-left-border-size) solid var(--orange-product-color);
+}
+.green-product {
+  color: var(--green-product-color);
+  border-left: var(--product-offering-left-border-size) solid var(--green-product-color);
+}
+
+button {
+  position: relative;
+  left: 100%;
+  transform: translateX(-100%);
+  padding: var(--button-padding);
+  color: white;
+  font-size: var(--button-font-size);
+  border-radius: var(--button-border-radius);
+  background-color: var(--button-background-color);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
