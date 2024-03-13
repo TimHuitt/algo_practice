@@ -1,0 +1,37 @@
+:root {
+  --red: #ff0000;
+  --orange: #ffa500;
+  --yellow: #ffff00;
+  --green: #008000;
+  --blue: #0000ff;
+  --purple: #800080;
+}
+
+#outer {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 25px solid var(--red);
+  background-color: var(--orange);
+}
+#middle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--green) 75%, var(--yellow) 75%);
+}
+#inner {
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 25px solid var(--blue);
+  background-color: var(--purple);
+}
