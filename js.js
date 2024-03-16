@@ -69,24 +69,31 @@ function flatten(value) {
   // create global running variables
   let flat = Array.isArray(value) ? [] : {}
   let currentElement = undefined
-
   // create flatten helper for recursive actions
   setFlat = (value) => {
     // handle adding values to elements
-    const addToElement = (value, force = false) => {
+    const addToElement = (value) => {
       if (currentElement) {
         if (Array.isArray(currentElement)) {
           currentElement.push(value)
         } else {
-          currentElement[value[0]] = value[1]
+          currentElement[Object.keys(value)[0]] = Object.values(value)[0]
         }
       } else {
         if (Array.isArray(flat)) {
           flat.push(value)
-        } else {
-          flat[value[0]] = value[1]
+        } else if (typeof value !== 'string' && typeof Object.values(value)[0] !== 'object') {
+          flat[Object.keys(value)[0]] = Object.values(value)[0]
         }
       }
+    }
+
+    const arrToObj = (value) => {
+      if (typeof value[1] === 'object') return false
+      const key = value[0]
+      const obj = {}
+      obj[key] = value[1]
+      return obj
     }
 
     // handle array elements
@@ -109,26 +116,26 @@ function flatten(value) {
     const flatObj = (value) => {
       // iterate current element
       Object.entries(value).map((element) => {
-        if (typeof element === 'object' && typeof element[1] !== 'number'){
-          // recursively pass to helper
-          setFlat(element)
+        // recursively pass to helper
+        if (Array.isArray(element)) {
+          arrToObj(element) ? addToElement(arrToObj(element)) : setFlat(element)
         // if current element is val
-        } else {
+        } else if (Object.values(value)[0]) {
           // add to current element
-          addToElement(element)
+          addToElement(arrToObj(element))
         }
       })
     }
-
-    // if current value is array
+    
     if (Array.isArray(value)) {
+      console.log(value)
       currentElement = flat.length > 0 && !Array.isArray(flat) && []
-      if (currentElement.length > 0 && !Array.isArray(currentElement)) addToElement(currentElement, true)
+      if (currentElement.length > 0 && !Array.isArray(currentElement)) addToElement(currentElement)
       flatArr(value)
     // if current value is obj
     } else if (typeof value === 'object') {
-      currentElement = flat.length > 0 && !Array.isArray(flat) && {}
-      if (currentElement.length > 0 && Array.isArray(currentElement)) addToElement(currentElement, true)
+      currentElement = flat.length > 0 && Array.isArray(flat) && {}
+      if (currentElement.length > 0 && Array.isArray(currentElement)) addToElement(currentElement)
       flatObj(value)
     // if current value is val
     } else {
@@ -141,13 +148,13 @@ function flatten(value) {
 }
 
 
-const value = {a: 1, b: {c: 2, d: 3, e: {f: 4}}}
+// const value1 = {a: 1, b: {c: 2, d: 3, e: {f: 4}}}
 // output: { a: 1, c: 2, d: 3, f: 4 }
 
-// const value = [1, 2,[3, 4, [5, 6]]]
+// const value2 = [1, 2,[3, 4, [5, 6]]]
 // output: [ 1, 2, 3, 4, 5, 6 ]
 
-// const value = [1, 2, [3], {
+// const value3 = [1, 2, [3], {
 //   a: 4,
 //   b: {
 //     c: 5,
@@ -157,4 +164,76 @@ const value = {a: 1, b: {c: 2, d: 3, e: {f: 4}}}
 // output: [1, 2, 3, {a: 4, c: 5, d: [6, 7, 8, 9, 10]}]
 
 
-console.log(flatten(value))
+// console.log(flatten(value1))
+// console.log(flatten(value2))
+// console.log(flatten(value3))
+
+
+// ______________________________
+// ______________________________
+// error testing
+
+function describe(testSuiteName, func) {
+  console.log(`beginning test suite ${testSuiteName}`)
+  try {
+    func()
+    console.log(`successfully completed test suite ${testSuiteName}`)
+  } catch (err) {
+    console.error(`failed running test suite ${testSuiteName} on test case ${err.message}`)
+  }
+}
+
+function it(testCaseName, func) {
+  console.log(`beginning test case ${testCaseName}`)
+  try {
+    func()
+    console.log(`successfully completed test case ${testCaseName}`)
+  } catch (err) {
+    throw new Error(`${testCaseName} with error message ${err.message}`)
+  }
+}
+
+function expect(actual) {
+  return {
+    toBe(expected) {
+      if (actual !== expected) {
+        throw new Error(`expected ${JSON.stringify(actual)} to be ${JSON.stringify(expected)}`)
+      }
+    },
+    toExist() {
+      if (actual === null || actual === undefined) {
+        throw new Error(`expected value to exist but got ${JSON.stringify(actual)}`)
+      }
+    },
+    toBeType(expected) {
+      if (typeof actual !== expected) {
+        throw new Error(`expected ${JSON.stringify(actual)} to be of type ${expected} but got ${typeof actual}`)
+      }
+    }
+  }
+}
+
+// Do not edit the lines below.
+exports.describe = describe;
+exports.it = it;
+exports.expect = expect;
+
+
+
+// ______________________________
+// ______________________________
+// custom iterators
+
+Array.prototype.myMap = function (callback) {
+  for (let i = 0; i < this.length; i++) {
+    console.log(this[i])
+  }
+};
+
+array = [1, 2, 3]
+
+const mappedArray = array.myMap((value, i, arr) => {
+  return value + i + arr[1]
+})
+
+console.log(mappedArray)
