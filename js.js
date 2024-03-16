@@ -225,10 +225,40 @@ exports.expect = expect;
 // custom iterators
 
 Array.prototype.myMap = function (callback) {
+  const output = []
   for (let i = 0; i < this.length; i++) {
-    console.log(this[i])
+    output.push(callback(this[i], i, this))
   }
+  return output
 };
+
+Array.prototype.myFilter = function (callback) {
+  if (!this.length) return []
+  const output = []
+  for (let i = 0; i < this.length; i++) {
+    if (callback(this[i], i, this) === true) {
+      output.push(this[i])
+    }
+  }
+  return output
+};
+
+Array.prototype.myReduce = function (callback, initialValue) {
+  let start = 0
+  
+  acc = initialValue
+  if (initialValue === undefined) {
+    acc = this[0]
+    start = 1
+  }
+
+  for (let i = start; i < this.length; i++) {
+    acc = callback(acc, this[i], i, this)
+  }
+
+  return acc
+};
+
 
 array = [1, 2, 3]
 
@@ -236,4 +266,14 @@ const mappedArray = array.myMap((value, i, arr) => {
   return value + i + arr[1]
 })
 
-console.log(mappedArray)
+const filteredArray = array.myFilter((value, i, arr) => {
+  return (value + i + arr[1]) > 5
+})
+
+const reducedArray = array.myReduce((acc, value, i, arr) => {
+  return acc + value + i + arr[1]
+}, 3)
+
+// console.log(mappedArray)
+console.log(filteredArray)
+console.log(reducedArray)
