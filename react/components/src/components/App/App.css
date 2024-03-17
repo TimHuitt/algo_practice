@@ -1,5 +1,6 @@
 body {
-  background-color: white;
+  background-color: rgb(44, 44, 49);
+  color: rgb(182, 223, 238);
 }
 .board {
   display: flex;

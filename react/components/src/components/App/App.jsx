@@ -6,7 +6,14 @@ function App() {
   const [ data, setData ] = useState(null)
   const [ error, setError ] = useState(null)
   const [ word, setWord ] = useState('TESTING')
-  const [ boardData, setBoardData ] = useState([]) 
+  const [ boardData, setBoardData ] = useState([
+    {'00': 't','01': 'e','02': 's','03': 't','04': '!'},
+    {'10': '','11': '','12': '','13': '','14': ''},
+    {'20': '','21': '','22': '','23': '','24': ''},
+    {'30': '','31': '','32': '','33': '','34': ''},
+    {'40': '','41': '','42': '','43': '','44': ''},
+    {'50': '','51': '','52': '','53': '','54': ''},
+  ])
 
 //   useEffect(() => {
 //     const url = "/api/fe/wordle-words"
@@ -28,25 +35,26 @@ function App() {
     }
   }, [data])
 
-  const line = (i) => {
-    return (
-      <div key={`line-${i}`} className="line">
-        {Array.from(Array(5).keys()).map((index) => (
-          <div className='tile'>
-            {`${i}-${index}`}
-          </div>
-        ))}
-      </div>
-    )}
   
+  const board = (
+    <>
+      {Array.from(Array(6).keys()).map((i) => (
+        <div key={`line-${i}`} className="line">
+          {Array.from(Array(5).keys()).map((index) => (
+            <div className='tile'>
+              {boardData[i][`${i}${index}`]}
+            </div>
+          ))}
+        </div>
+      ))}
+    </>
+  )
   
 
   return (
     <div className='board'>
       {word}
-      {Array.from(Array(6).keys()).map((index) => (
-        line(index)
-      ))}
+      {board}
       <br />
     </div>
   )
