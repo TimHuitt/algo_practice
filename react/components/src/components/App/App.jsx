@@ -7,7 +7,7 @@ function App() {
   const [ error, setError ] = useState(null)
   const [ word, setWord ] = useState('TESTING')
   const [ boardData, setBoardData ] = useState([
-    {'00': 't','01': 'e','02': 's','03': 't','04': '!'},
+    {'00': '','01': '','02': '','03': '','04': ''},
     {'10': '','11': '','12': '','13': '','14': ''},
     {'20': '','21': '','22': '','23': '','24': ''},
     {'30': '','31': '','32': '','33': '','34': ''},
@@ -15,18 +15,20 @@ function App() {
     {'50': '','51': '','52': '','53': '','54': ''},
   ])
 
-//   useEffect(() => {
-//     const url = "/api/fe/wordle-words"
-//     axios.get(url)
-//       .then((res) => {
-//         setData(res.data)
-//       })
-//       .catch((err) => {
-//         console.error(err.response ? err.response.data : err.message)
-//       })
-// 
-//       
-//   }, [])
+  useEffect(() => {
+    const url = "/api/fe/wordle-words"
+    axios.get(url)
+      .then((res) => {
+        setData(res.data)
+      })
+      .catch((err) => {
+        console.error(err.response ? err.response.data : err.message)
+      })
+
+    fillBoard()
+
+      
+  }, [])
 
   useEffect(() => {
     if (data) {
@@ -35,6 +37,9 @@ function App() {
     }
   }, [data])
 
+  const buildBoard = () => {
+
+  }
   
   const board = (
     <>

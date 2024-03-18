@@ -245,7 +245,7 @@ Array.prototype.myFilter = function (callback) {
 
 Array.prototype.myReduce = function (callback, initialValue) {
   let start = 0
-  
+
   acc = initialValue
   if (initialValue === undefined) {
     acc = this[0]
@@ -275,5 +275,20 @@ const reducedArray = array.myReduce((acc, value, i, arr) => {
 }, 3)
 
 // console.log(mappedArray)
-console.log(filteredArray)
-console.log(reducedArray)
+// console.log(filteredArray)
+// console.log(reducedArray)
+
+
+const buildBoard = () => {
+  output = []
+  for (let i = 0; i < 6; i++) {
+    obj = {}
+    for (let j = 0; j < 5; j++) {
+      obj[`${i}${j}`] = ''
+    }
+    output.push(obj)
+  }
+  return output
+}
+
+console.log(buildBoard())
