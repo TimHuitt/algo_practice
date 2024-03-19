@@ -291,4 +291,30 @@ const buildBoard = () => {
   return output
 }
 
-console.log(buildBoard())
+// console.log(buildBoard())
+
+
+
+// ______________________________
+// ______________________________
+// two sums
+
+const twoSum = (nums, target) => {
+  let current = 0
+  const matches = []
+
+  for (let num of nums) {
+    current = num
+    for (let n of nums) {
+      if (n !== current && n + current === target) {
+        matches.unshift(nums.indexOf(n))
+      }
+    }
+  }
+  return matches
+};
+
+nums = [2,7,11,15]
+target = 9
+
+console.log(twoSum(nums, target))

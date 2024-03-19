@@ -6,29 +6,20 @@ function App() {
   const [ data, setData ] = useState(null)
   const [ error, setError ] = useState(null)
   const [ word, setWord ] = useState('TESTING')
-  const [ boardData, setBoardData ] = useState([
-    {'00': '','01': '','02': '','03': '','04': ''},
-    {'10': '','11': '','12': '','13': '','14': ''},
-    {'20': '','21': '','22': '','23': '','24': ''},
-    {'30': '','31': '','32': '','33': '','34': ''},
-    {'40': '','41': '','42': '','43': '','44': ''},
-    {'50': '','51': '','52': '','53': '','54': ''},
-  ])
+  const [ boardData, setBoardData ] = useState(null)
 
   useEffect(() => {
-    const url = "/api/fe/wordle-words"
-    axios.get(url)
-      .then((res) => {
-        setData(res.data)
-      })
-      .catch((err) => {
-        console.error(err.response ? err.response.data : err.message)
-      })
-
-    fillBoard()
-
-      
+    buildBoard()
+    // const url = "/api/fe/wordle-words"
+    // axios.get(url)
+    //   .then((res) => {
+    //     setData(res.data)
+    //   })
+    //   .catch((err) => {
+    //     console.error(err.response ? err.response.data : err.message)
+    //   })
   }, [])
+
 
   useEffect(() => {
     if (data) {
@@ -38,20 +29,39 @@ function App() {
   }, [data])
 
   const buildBoard = () => {
+    const output = []
+    const obj = {}
+    for (let i = 0; i < 6; i++) {
+      for (let j = 0; j < 5; j++) {
+        obj[`${i}${j}`] = ''
+      }
+    }
+    setBoardData(obj)
+  }
 
+  const addToBoard = (pos, char) => {
+    setBoardData((prev) => {
+      const updatedData = {...prev}
+      updatedData[pos] = char
+      return updatedData
+    })
   }
   
   const board = (
     <>
-      {Array.from(Array(6).keys()).map((i) => (
-        <div key={`line-${i}`} className="line">
-          {Array.from(Array(5).keys()).map((index) => (
-            <div className='tile'>
-              {boardData[i][`${i}${index}`]}
-            </div>
-          ))}
-        </div>
-      ))}
+      { boardData ? (
+        Array.from(Array(6).keys()).map((i) => (
+          <div key={`line-${i}`} className={`line line-${i}`}>
+            {Array.from(Array(5).keys()).map((index) => (
+              <div key={`tile-${i}${index}`} className={`tile tile-${i}${index}`}>
+                {boardData[`${i}${index}`]}
+              </div>
+            ))}
+          </div>
+        ))
+      ) : (
+        ''
+      )}
     </>
   )
   
@@ -61,6 +71,7 @@ function App() {
       {word}
       {board}
       <br />
+      {/* <button type="button" onClick={() => addToBoard('00', 'f')}>test</button> */}
     </div>
   )
 }
