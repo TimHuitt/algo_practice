@@ -132,39 +132,23 @@ def nodeDepths(root):
 
 
 def evaluateExpressionTree(tree):
-  # create helper for recursive actions
-  # get operation sets
-    # deepest, leftmost ~ deepest rightmost
-  # replace set root with result
-  # repeat until left and right max depth is 1
-  # return final left and right result
-  sets = [[], []]
-
-  def getSets(node, sets, pos, depth):
-    if not node : return
-
-    if pos == 1:
-      sets[1].append(node.value)
-    elif pos == -1:
-      sets[0].append(node.value)
+  # set base case
+  if tree.value >= 0:
+    return tree.value
     
-    getSets(node.left, sets, -1, depth)
-    getSets(node.right, sets, 1, depth)
+  # collect right and left values recursively
+  left = evaluateExpressionTree(tree.left)
+  right = evaluateExpressionTree(tree.right)
 
-    depth += 1
-  def getResults(sets):
-    pos = 1 if sets[0][len(sets[0]) - 1] > 0 else -1
-    if all(not i for i in sets) : return
-
-
-
-    return pos
-   
-  getSets(tree, sets, 0, 0)
-
-  print(getResults(sets))
-
-  return sets
+  # determine operation and return result
+  if tree.value == -1:
+    return left + right
+  if tree.value == -2:
+    return left - right
+  if tree.value == -3:
+    return int(left / right)
+  
+  return left * right
 
 
 
@@ -201,32 +185,32 @@ def buildBSTFromDict(nodeList):
     
     return root
 
-bst = {
-  "tree": {
-    "nodes": [
-      {"id": "10", "left": "5", "right": "15", "value": 10},
-      {"id": "15", "left": "13", "right": "22", "value": 15},
-      {"id": "22", "left": None, "right": None, "value": 22},
-      {"id": "13", "left": None, "right": "14", "value": 13},
-      {"id": "14", "left": None, "right": None, "value": 14},
-      {"id": "5", "left": "2", "right": "5-2", "value": 5},
-      {"id": "5-2", "left": None, "right": None, "value": 5},
-      {"id": "2", "left": "1", "right": None, "value": 2},
-      {"id": "1", "left": None, "right": None, "value": 1}
-    ],
-    "root": "10"
-  },
-  "target": 12
-}
+# bst = {
+#   "tree": {
+#     "nodes": [
+#       {"id": "10", "left": "5", "right": "15", "value": 10},
+#       {"id": "15", "left": "13", "right": "22", "value": 15},
+#       {"id": "22", "left": None, "right": None, "value": 22},
+#       {"id": "13", "left": None, "right": "14", "value": 13},
+#       {"id": "14", "left": None, "right": None, "value": 14},
+#       {"id": "5", "left": "2", "right": "5-2", "value": 5},
+#       {"id": "5-2", "left": None, "right": None, "value": 5},
+#       {"id": "2", "left": "1", "right": None, "value": 2},
+#       {"id": "1", "left": None, "right": None, "value": 1}
+#     ],
+#     "root": "10"
+#   },
+#   "target": 12
+# }
 
 bst = {
   "tree": {
     "nodes": [
-      {"id": "1", "left": "2", "right": "3", "value": -1},
-      {"id": "2", "left": None, "right": None, "value": 2},
-      {"id": "3", "left": "4", "right": "5", "value": -2},
+      {"id": "1", "left": "10", "right": "3", "value": -3},
+      {"id": "10", "left": None, "right": None, "value": 10},
+      {"id": "3", "left": "4", "right": "6", "value": -2},
       {"id": "4", "left": None, "right": None, "value": 4},
-      {"id": "5", "left": None, "right": None, "value": 5}
+      {"id": "6", "left": None, "right": None, "value": 6}
     ],
     "root": "1"
   }
@@ -239,6 +223,9 @@ bst = {
   #     4  5
 
 
+# _________________________________ //
+# _________________________________ //
+# binary tree print functions
 
 # print(findClosestValueInBst(buildBSTFromDict(bst["tree"]["nodes"]), bst['target']))
 
@@ -246,4 +233,29 @@ bst = {
 
 # print(nodeDepths(buildBSTFromDict(bst["tree"]["nodes"])))
 
-print(evaluateExpressionTree(buildBSTFromDict(bst["tree"]["nodes"])))
+# print(evaluateExpressionTree(buildBSTFromDict(bst["tree"]["nodes"])))
+
+
+# _________________________________ //
+# _________________________________ //
+# three number sum
+
+def threeNumberSum(array, targetSum):
+  output = []
+
+  # loop array
+  for i in array:
+    # loop array
+    count = 0
+    for j in array:
+      diff = targetSum - (i + j)
+
+      if diff in array and diff != j and diff != i and j != i:
+        if not any(sorted([i, j, array[array.index(diff)]]) == sub for sub in output):
+          output.append(sorted([i, j, array[array.index(diff)]]))
+      count += 1
+  return sorted(output)
+
+arr = [12, 3, 1, 2, -6, 5, -8, 6]
+target = 0
+print(threeNumberSum(arr, target))

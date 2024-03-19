@@ -342,45 +342,50 @@
 // ______________________________
 // roman numerals to number
 
-const romanToInt = (rn) => {
-  let nums = []
-  const table = {
-    'I': 1,
-    'V': 5,
-    'X': 10,
-    'L': 50,
-    'C': 100,
-    'D': 500,
-    'M': 1000,
-  }
+// const romanToInt = (rn) => {
+//   let nums = []
+//   const table = {
+//     'I': 1,
+//     'V': 5,
+//     'X': 10,
+//     'L': 50,
+//     'C': 100,
+//     'D': 500,
+//     'M': 1000,
+//   }
+// 
+//   for (let i = 0; i < rn.length; i++) {
+//     if (rn[i] === 'I' && rn[i + 1] === 'V') {
+//       nums.push(4)
+//       i++
+//     } else if (rn[i] === 'I' && rn[i + 1] === 'X') {
+//       nums.push(9)
+//       i++
+//     } else if (rn[i] === 'X' && rn[i + 1] === 'L') {
+//       nums.push(40)
+//       i++
+//     } else if (rn[i] === 'X' && rn[i + 1] === 'C') {
+//       nums.push(90)
+//       i++
+//     } else if (rn[i] === 'C' && rn[i + 1] === 'D') {
+//       nums.push(400)
+//       i++
+//     } else if (rn[i] === 'C' && rn[i + 1] === 'M') {
+//       nums.push(900)
+//       i++
+//     } else {
+//       nums.push(table[rn[i]])
+//     }
+//   }
+//   
+//   return nums.reduce((acc, val) => 
+//     acc + val, 0
+//   )
+// }
+// 
+// console.log(romanToInt('MCMXCIV'))
 
-  for (let i = 0; i < rn.length; i++) {
-    if (rn[i] === 'I' && rn[i + 1] === 'V') {
-      nums.push(4)
-      i++
-    } else if (rn[i] === 'I' && rn[i + 1] === 'X') {
-      nums.push(9)
-      i++
-    } else if (rn[i] === 'X' && rn[i + 1] === 'L') {
-      nums.push(40)
-      i++
-    } else if (rn[i] === 'X' && rn[i + 1] === 'C') {
-      nums.push(90)
-      i++
-    } else if (rn[i] === 'C' && rn[i + 1] === 'D') {
-      nums.push(400)
-      i++
-    } else if (rn[i] === 'C' && rn[i + 1] === 'M') {
-      nums.push(900)
-      i++
-    } else {
-      nums.push(table[rn[i]])
-    }
-  }
-  
-  return nums.reduce((acc, val) => 
-    acc + val, 0
-  )
-}
 
-console.log(romanToInt('MCMXCIV'))
+// ______________________________
+// ______________________________
+// 
