@@ -215,7 +215,6 @@ bst = {
     "root": "1"
   }
 }
-
   #   -1
   #    /\
   #   2  -2
@@ -240,22 +239,27 @@ bst = {
 # _________________________________ //
 # three number sum
 
-def threeNumberSum(array, targetSum):
-  output = []
+# def threeNumberSum(array, targetSum):
+#   output = []
+# 
+#   # loop array
+#   for i in array:
+#     # loop array
+#     count = 0
+#     for j in array:
+#       diff = targetSum - (i + j)
+# 
+#       if diff in array and diff != j and diff != i and j != i:
+#         if not any(sorted([i, j, array[array.index(diff)]]) == sub for sub in output):
+#           output.append(sorted([i, j, array[array.index(diff)]]))
+#       count += 1
+#   return sorted(output)
+# 
+# arr = [12, 3, 1, 2, -6, 5, -8, 6]
+# target = 0
+# print(threeNumberSum(arr, target))
 
-  # loop array
-  for i in array:
-    # loop array
-    count = 0
-    for j in array:
-      diff = targetSum - (i + j)
 
-      if diff in array and diff != j and diff != i and j != i:
-        if not any(sorted([i, j, array[array.index(diff)]]) == sub for sub in output):
-          output.append(sorted([i, j, array[array.index(diff)]]))
-      count += 1
-  return sorted(output)
-
-arr = [12, 3, 1, 2, -6, 5, -8, 6]
-target = 0
-print(threeNumberSum(arr, target))
+# _________________________________ //
+# _________________________________ //
+# smallest difference
