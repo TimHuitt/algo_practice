@@ -262,4 +262,48 @@ bst = {
 
 # _________________________________ //
 # _________________________________ //
-# smallest difference
+# min wait time
+
+
+def minimumWaitingTime(queries):
+  queries.sort()
+  wait = 0
+  total = 0
+
+  for i in range(len(queries) - 1):
+     total += wait + queries[i]
+     wait += queries[i]
+  
+  return total
+    
+  
+     
+# qs = [1, 4, 5]
+# 0 + 1 + 5 = 6
+
+# qs = [3, 2, 1, 2, 6]
+# 1, 2, 2, 3, 6
+# 0 + 1 + 3 + 5 + 8 = 17
+
+
+# print(minimumWaitingTime(qs))
+
+
+
+# _________________________________ //
+# _________________________________ //
+# can heights be managed in photo if first row must contain smaller number than back row
+
+def classPhotos(redShirtHeights, blueShirtHeights):
+  redShirtHeights.sort()
+  blueShirtHeights.sort()
+
+  for i in range(len(redShirtHeights)):
+     if redShirtHeights 
+
+  return True
+
+
+redShirtHeights = [5, 8, 1, 3, 4]
+blueShirtHeights = [6, 9, 2, 4, 5]
+print(classPhotos(redShirtHeights, blueShirtHeights))
