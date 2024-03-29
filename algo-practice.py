@@ -298,9 +298,15 @@ def classPhotos(redShirtHeights, blueShirtHeights):
   redShirtHeights.sort()
   blueShirtHeights.sort()
 
-  for i in range(len(redShirtHeights)):
-     if redShirtHeights 
+  tallest = redShirtHeights if redShirtHeights[0] > blueShirtHeights[0] else blueShirtHeights
+  shortest = blueShirtHeights if tallest == redShirtHeights else redShirtHeights
 
+  for i in range(len(tallest)):
+    if tallest[i] > shortest[i]:
+       continue
+    else:
+       return False
+  
   return True
 
 
