@@ -153,3 +153,65 @@
   - Inserting / Removing the tail: 0(1)
   - Inserting / Removing a middle node: O(n) to access + O(1)
   - Searching for a value: O(n)
+
+## Hash Table
+> A data structure that provides fast insertion, deletion, and lookup of key/value pairs.
+
+- Under the hood, a hash table uses a dynamic array of linked lists to efficiently store key/value pairs. When inserting a key/value pair, a hash function first maps the key, which is typically a string (or any data that can be hashed, depending on the implementation of the hash table), to an integer value and, by extension, to an index in the underlying dynamic array.
+
+- Then, the value associated with the key is added to the linked list stored at that index in the dynamic array, and a reference to the key is also stored with the value.
+Hash tables rely on highly optimized hash functions to minimize the number of collisions that occur when storing values: cases where two keys map to the same index.
+
+- Below is an example of what a hash table might look like under the hood:
+  - 0: (value1, key1) →> null
+  - 1: (value2, key2) -> (value3, key3) -> (value4, key4)
+  - 2: (value5, key5) →> null
+  - 3: (value6, key6) -> null
+  - 4: null
+  - 5: (value7, key7) -> (value8, key8)
+  - 6: (value9, key9) -> null
+
+>  In the hash table above, the keys key2, key3, and key4 collided by all being hashed to 1, and the keys key and key8 collided by both being hashed to 5.
+
+- The following are a hash table's standard operations and their corresponding time complexities:
+  - Inserting a key/value pair: 
+    - O(1) on average; O(n) in the worse case
+  - Removing a key/value pair: 
+    - O(1) on average
+    - O(n) in the worse case
+  - Looking up a key: 
+    - O(1) on average
+    - O(n) in the worse case
+
+> The worst-case linear-time operations occur when a hash table experiences a lot of collisions, leading to long linked lists internally, which take O(n) time to traverse.
+
+> However, in practice and especially in coding interviews, we typically assume that the hash functions employed by hash tables are so optimized that collisions are extremely rare and constant-time operations are all but guaranteed.
+
+## Stacks & Queues
+
+
+### Stack
+> An array-like data structure whose elements follow the LIFO rule: Last In, First Out.
+
+- A stack is often compared to a stack of books on a table: the last book that's placed on the stack of books is the first one that's taken off the stack.
+
+- The following are a stack's standard operations and their corresponding time complexities:
+  - Pushing an element onto the stack: O(1)
+  - Popping an element off the stack: O(1)
+  - Peeking at the element on the top of the stack: O(1)
+  - Searching for an element in the stack: O(n)
+
+> A stack is typically implemented with a dynamic array or with a singly linked list.
+
+### Queue
+> An array-like data structure whose elements follow the FIFO rule: First In, First Out.
+
+- A queue is often compared to a group of people standing in line to purchase items at a store: the first person to get in line is the first one to purchase items and to get out of the queue.
+
+- The following are a queue's standard operations and their corresponding time complexities:
+  - Enqueuing an element into the queue: 0(1)
+  - Dequeuing an element out of the queue: O(1)
+  - Peeking at the element at the front of the queue: O(1)
+  - Searching for an element in the queue: O(n)
+  
+> A queue is typically implemented with a doubly linked list.
