@@ -522,4 +522,122 @@
 
 // ______________________________
 // ______________________________
+// rotate array
+
+// var rotate = function(nums, k) {
+//     for (let i = 0; i < k; i++) {
+//       nums.unshift(nums.pop())
+//     }
+// };
 // 
+// const nums = [1,2,3,4,5,6,7]
+// const k = 3
+// console.log(rotate(nums, k))
+
+
+// ______________________________
+// ______________________________
+// rotate array simplified
+
+// var rotate = function(nums, k) {
+//   k = k % nums.length
+
+//   const reverse = (start, end) => {
+//     while (start < end) {
+//       let temp = nums[start]
+//       nums[start] = nums[end]
+//       nums[end] = temp
+//       start++
+//       end--
+//     }
+//   }
+// 
+//   reverse(0, nums.length - 1)
+// 
+//   reverse(0, k - 1)
+// 
+//   reverse(k, nums.length - 1)
+// 
+//   return nums
+// };
+// 
+// // const nums = [1,2,3,4,5,6,7]
+// const nums = [-1,2,3,4,5]
+// const k = 4
+// console.log(rotate(nums, k))
+
+
+// ______________________________
+// ______________________________
+// max profit
+
+
+// const maxProfit = (prices) => {
+//   // set lowest/highest values
+//   let profit = 0
+//   let lowest = prices[0]
+// 
+//   // loop prices
+//   for (let i = 0; i < prices.length; i++) {
+//     // set lowest if price is lower
+//     if (prices[i] < lowest) {
+//       lowest = prices[i]
+//     }
+//     // update profit if higher
+//     if (prices[i] - lowest > profit) {
+//       // set highest
+//       profit = prices[i] - lowest
+//     }
+//   }
+//   // return difference
+//   return(profit)
+// };
+// 
+// const prices = [7,4,5,3,6,1]
+// // const prices = [7,6,4,3,1]
+// // const prices = [2,4,1]
+// console.log(maxProfit(prices))
+
+
+// ______________________________
+// ______________________________
+// int to roman numeral
+
+// const intToRoman = (num) => {
+//   let result = ''
+// 
+//   // create map of possibilities
+//   const map = {
+//     'M': '1000',
+//     'CM': '900',
+//     'D': '500',
+//     'CD': '400',
+//     'C': '100',
+//     'XC': '90',
+//     'L': '50',
+//     'XL': '40',
+//     'X': '10',
+//     'IX': '9',
+//     'V': '5',
+//     'IV': '4',
+//     'I': '1',
+//   }
+// 
+//   // loop map
+//   for (let i in map) {
+//     // while num in range of current value
+//     while (num >= map[i]) {
+//       // add current key
+//       result += i
+//       // reduce num by current value
+//       num -= map[i]
+//     }
+//   }
+//   return result
+// } 
+// 
+// const num = 1994
+// // M CM XC IV
+// // 1 9  9  4
+// console.log(intToRoman(num))
+
