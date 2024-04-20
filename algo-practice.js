@@ -1200,6 +1200,10 @@
 // console.log(result)
 
 
+// ______________________________
+// ______________________________
+// max profit 2 - buy and sell same day
+
 // const maxProfit = (prices) => {
 //   // set lowest/highest values
 //   let profit = 0
@@ -1220,10 +1224,116 @@
 //   // return difference
 //   return(profit)
 // };
-// 
+
 // const prices = [7,4,5,3,6,1]
 // // const prices = [7,6,4,3,1]
 // // const prices = [2,4,1]
 // console.log(maxProfit(prices))
 
+
+// ______________________________
+// ______________________________
+// Always return between 6 and 7
+
+// const x = 2; 
+// let y = 4; 
+// function update(arg) { 
+//   return Math.random() + y * arg; 
+// } 
+// // y = 2
+// y = 3
+// const result = update(x);
+// console.log(result)
+
+// ______________________________
+// ______________________________
+// covert string to html table
+// 
+// const convertToTable = (tableData) => {
+//   const rows = tableData.split(';')
+//   let html = "<table>\n"
+// 
+//   for (row of rows) {
+//     let data = row.split(',')
+//     html += "<tr>\n"
+//     for (item of data) {
+//       html += "<td>\n" + item + "\n</td>\n"
+//     }
+//     html += "</tr>\n"
+//   }
+//   html += "</table>"
+// 
+//   return html
+// }
+// 
+// const tableData =  "Name, Age, Job; Alice, 30, Engineer; Bob, 25, Designer"
+// 
+// console.log(convertToTable(tableData))
+
+// ______________________________
+// ______________________________
+// find the first non-repeated character in a given string
+
+// const findNonRepeat = (string) => {
+//   const map = {}
+//   for (let i of string) {
+//     if (map[i] !== undefined) {
+//       map[i] += 1
+//     } else {
+//       map[i] = 1
+//     }
+//   }
+// 
+//   for (let [key, val] of Object.entries(map)) {
+//     if (val === 1) return key
+//   }
+// 
+//   return map
+// }
+
+// // improved
+// 
+// const findNonRepeat = (string) => {
+//   const map = new Map()
+// 
+//   for (let char of string) {
+//     map.set(char, (map.get(char) || 0) + 1)
+//   }
+// 
+//   for (let [char, val] of map) {
+//     if (val === 1) return char
+//   }
+// }
+// 
+// 
+// const string = "aabbcdddeeef"
+// console.log(findNonRepeat(string))
+
+// ______________________________
+// ______________________________
+// // reverse singly linked list
+// 
+// const reverse = (head) => {
+//   // set up prev and current
+//   let prev = null
+//   let current = head
+//   // loop list
+//   while (current) {
+//     // save next
+//     const next_temp = current.next
+//     // set next value based on prev value
+//     current.next = prev
+//     // set prev current
+//     prev = current
+//     // set current to next
+//     current = next_temp
+//   }
+// 
+//   // return new head
+//   return prev
+// }
+
+// ______________________________
+// ______________________________
+// 
 
