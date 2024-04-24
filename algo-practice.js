@@ -1335,5 +1335,47 @@
 
 // ______________________________
 // ______________________________
-// 
+//  Longest Substring Without Repeating Characters
 
+// const lengthOfLongestSubstring = (str) => {
+//   let strings = []
+//   let current = ''
+//   let count = 0
+//   const strArr = str.split('')
+// 
+//   strArr.forEach((e) => {
+//     if (current.includes(e)) {
+//       strings[count] = current
+//       count++
+//       current = e
+//     } else {
+//       current = `${current}${e}`
+//     }
+//   })
+// 
+//   const result = strings.reduce((a, b) => a.length > b.length ? a : b)
+// 
+//   return(result.length)
+// }
+// 
+// s = "abcabcbb"
+// console.log(lengthOfLongestSubstring(s))
+
+
+// ______________________________
+// ______________________________
+//  Longest Substring Without Repeating Characters
+
+const maxArea = (height) => {
+
+
+
+  
+
+
+  return(height)
+}
+
+const height = [1,8,6,2,5,4,8,3,7]
+
+console.log(maxArea(height))
