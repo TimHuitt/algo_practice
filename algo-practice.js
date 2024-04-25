@@ -1071,6 +1071,39 @@
 // console.log(maxProfit(prices))
 
 
+
+// ______________________________
+// ______________________________
+// max profit 2 - buy and sell same day
+
+// const maxProfit = (prices) => {
+//   // set lowest/highest values
+//   let profit = 0
+//   let lowest = prices[0]
+// 
+//   // loop prices
+//   for (let i = 0; i < prices.length; i++) {
+//     // set lowest if price is lower
+//     if (prices[i] < lowest) {
+//       lowest = prices[i]
+//     }
+//     // update profit if higher
+//     if (prices[i] - lowest > profit) {
+//       // set highest
+//       profit = prices[i] - lowest
+//     }
+//   }
+//   // return difference
+//   return(profit)
+// };
+// 
+// // const prices = [7,1,5,3,6,4]
+// const prices = [1,2,3,4,5]
+// const prices = [7,6,4,3,1]
+// // const prices = [7,6,4,3,1]
+// // const prices = [2,4,1]
+// console.log(maxProfit(prices))
+
 // ______________________________
 // ______________________________
 // int to roman numeral
@@ -1199,38 +1232,6 @@
 // let result = addTwoNumbers(l1, l2)
 // console.log(result)
 
-
-// ______________________________
-// ______________________________
-// max profit 2 - buy and sell same day
-
-// const maxProfit = (prices) => {
-//   // set lowest/highest values
-//   let profit = 0
-//   let lowest = prices[0]
-// 
-//   // loop prices
-//   for (let i = 0; i < prices.length; i++) {
-//     // set lowest if price is lower
-//     if (prices[i] < lowest) {
-//       lowest = prices[i]
-//     }
-//     // update profit if higher
-//     if (prices[i] - lowest > profit) {
-//       // set highest
-//       profit = prices[i] - lowest
-//     }
-//   }
-//   // return difference
-//   return(profit)
-// };
-
-// const prices = [7,4,5,3,6,1]
-// // const prices = [7,6,4,3,1]
-// // const prices = [2,4,1]
-// console.log(maxProfit(prices))
-
-
 // ______________________________
 // ______________________________
 // Always return between 6 and 7
@@ -1337,45 +1338,205 @@
 // ______________________________
 //  Longest Substring Without Repeating Characters
 
-// const lengthOfLongestSubstring = (str) => {
-//   let strings = []
-//   let current = ''
-//   let count = 0
-//   const strArr = str.split('')
+// const lengthOfLongestSubstring = (s) => {
+//   const chars = {}
+//   let max = 0
+//   let start = 0
 // 
-//   strArr.forEach((e) => {
-//     if (current.includes(e)) {
-//       strings[count] = current
-//       count++
-//       current = e
-//     } else {
-//       current = `${current}${e}`
+//   // loop characters
+//   for (let i = 0; i < s.length; i++) {
+//     // if current char count >= start
+//     if (chars[s[i]] >= start) {
+//       // set start to current current char count + 1
+//       start = chars[s[i]] + 1
 //     }
-//   })
 // 
-//   const result = strings.reduce((a, b) => a.length > b.length ? a : b)
+//     // set current char count to current index
+//     chars[s[i]] = i
+//     // set max to larger of max and start -> index + 1
+//     max = Math.max(max, i - start + 1)
+//   }
 // 
-//   return(result.length)
+//   // return max
+//   return max
 // }
 // 
 // s = "abcabcbb"
+// // s = " "
 // console.log(lengthOfLongestSubstring(s))
 
 
 // ______________________________
 // ______________________________
-//  Longest Substring Without Repeating Characters
+//  largest container
 
-const maxArea = (height) => {
+// const maxArea = (height) => {
+//   // return min * min if length === 2
+//   if (height.length === 2) {
+//     const area = Math.min.apply(null, height)
+//     return area * area
+//   }
+// 
+//   // init largest
+//   let largest = 0
+//   
+//   // init left/right
+//   let left = 0
+//   let right = height.length - 1
+// 
+//   // while left < right
+//   while (left < right) {
+//     // get area
+//     const area = Math.min(height[left], height[right]) * (right - left)
+//     // update largest
+//     largest = Math.max(largest, area)
+//     // if left height less than right height
+//     if (height[left] < height[right]) {
+//       // increase left
+//       left++
+//     // else
+//     } else {
+//       // decrease right
+//       right--
+//     }
+//   }
+//   // return largest
+//   return(largest)
+// }
+// 
+// const height = [1,8,6,2,5,4,8,3,7]
+// 
+// console.log(maxArea(height))
+
+
+// ______________________________
+// ______________________________
+//  reverse integer within 32bit range
+
+// const reverse = (x) => {
+//   let nums = []
+//   let sign = 0
+//   const top = Math.pow(2, 31) - 1
+//   const bottom = Math.pow(-2, 31) - 1
+//   
+//   if (x < 0) {
+//     sign = 1
+//     x = x * -1
+//   }
+// 
+//   while (x > 0) {
+//     nums.push(x % 10)    
+//     x = Math.floor(x / 10)
+//   }
+// 
+//   result = parseInt(nums.join(''))
+// 
+//   if (sign) {
+//     result *= -1
+//   }
+// 
+//   if (result >= top || result <= bottom || !result) {
+//     return 0
+//   }
+// 
+//   return result
+// }
+// 
+// const x = 0
+// 
+// console.log(reverse(x))
+
+// ______________________________
+// ______________________________
+//  improved: reverse integer within 32bit range
+
+// const reverse = (x) => {
+//   let reversed = 0
+//   const top = Math.pow(2, 31) - 1
+//   const bottom = Math.pow(-2, 31)
+//   
+//   while (x !== 0) {
+//     const num = x % 10
+//     x = Math.floor((x - num) / 10)
+//     reversed = reversed * 10 + num
+// 
+//     if (reversed >= top || reversed <= bottom) {
+//       return 0
+//     }
+//   }
+// 
+//   return reversed
+// }
+// 
+// const x = 1534236469
+// 
+// console.log(reverse(x))
 
 
 
-  
+// ______________________________
+// ______________________________
+//  string to in (atoi)
 
 
-  return(height)
-}
+// const myAtoi = (s) => {
+//   s = s.trim()
+//   let result= ''
+//   let sign = 0
+//   const top = Math.pow(2, 31) - 1 // 2147483647
+//   const bottom = Math.pow(-2, 31) // -2147483648
+// 
+//   for (let i = 0; i < s.length; i++) {
+//     if (i === 0 && s[i] === '-') {
+//       sign = 1
+//       continue
+//     } else if (i === 0 && s[i] === '+') {
+//       continue
+//     }
+// 
+//     if (!isNaN(parseInt(s[i]))) {
+//       result = result + s[i]
+//     } else {
+//       break
+//     }
+//   }
+// 
+//   result = parseInt(result)
+//   const output = sign ? result * -1 : result
+// 
+//   if (output >= top) {
+//     return top
+//   } else if (output <= bottom) {
+//     return bottom
+//   }
+// 
+//   return isNaN(output) ? 0 : output
+// }
 
-const height = [1,8,6,2,5,4,8,3,7]
+// - Simplified
 
-console.log(maxArea(height))
+// const myAtoi = (s) => {
+//   const top = 2147483647
+//   const bottom = -2147483648
+//   const output = parseInt(s) || 0
+//   return output > top ? top : output < bottom ? bottom : output
+// }
+// 
+// // const s = ""
+// // const s = " "
+// // const s = ".1"
+// // const s = "+1"
+// // const s = "42"
+// // const s = "   -42"
+// // const s = "+-12"
+// const s = "-413"
+// // const s = "41935461684 with words"
+// // const s = "4193 with words"
+// // const s = "words and 987"
+// console.log(myAtoi(s))
+
+
+
+// ______________________________
+// ______________________________
+//  
