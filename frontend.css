@@ -296,7 +296,63 @@ button {
 
 
 
+/* Notifications */
 
+#wrapper {
+  width: 280px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: lightgrey;
+}
+h1 {
+  text-align: center;
+  text-decoration: underline;
+  margin: 0;
+}
+img {
+  height: 100px;
+  width: 100px;
+  border: solid 1px black;
+  border-radius: 50%;
+  grid-row: 1 / span 2;
+}
+p {
+  margin: 0;
+}
+button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+  font-size: 1rem;
+  background-color: #02203c;
+}
+.notifications {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.notification {
+  display: grid;
+  grid-template-rows: 5fr 1fr;
+  grid-template-columns: 2fr 5fr;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+}
+.user {
+  font-weight: bold;
+}
+.time {
+  grid-column: 2;
+  justify-self: end;
+  align-self: end;
+  font-style: italic;
+  font-size: 12px;
+}
 
 
 
