@@ -1541,15 +1541,45 @@
 // ______________________________
 //  
 
-const buildBoard = () => {
-  
-  let b = Array(7).fill([])
+const checkWinner = (board) => {
+  // if same index of 4 col = 1 or 2
+  // if index + 1 of 4 cols = 1 or 2
+  // if index - 1 of 4 cols = 1 or 2
+  // if any 4 of 1 col = 1 or 2
+  let count = {'1': 0, '2': 0}
+  let winner = 0
 
-  b.map((col, i) => {
-    b[i] = Array(6).fill(0)
+  board.map((e, i) => {
+    e.map((f, j) => {
+      if (f > 0) {
+        count[f] += 1
+      } else {
+        count = {'1': 0, '2': 0}
+      }
+      
+      if (count['1'] === 4) {
+        winner = 1
+      } else if (count['2'] === 4) {
+        winner = 2
+      }
+    })
+    
+    count = {'1': 0, '2': 0}
   })
 
-  console.log(b)
+  return winner
 }
 
-console.log(buildBoard())
+// asc right (-)
+// const board = [[0,0,0,0,0,2],[0,0,0,0,2,1],[0,0,0,2,1,2],[0,0,2,1,2,1],[0,0,0,0,0,1],[0,0,0,0,0,0],[0,0,0,0,0,0]]
+
+// desc right (+)
+// const board = [[0,0,1,2,1,2],[0,0,0,1,1,2],[0,0,0,0,1,2],[0,0,0,0,0,1],[0,0,0,0,0,2],[0,0,0,0,0,2],[0,0,0,0,0,0]]
+
+// horizontal (same index)
+// const board = [[0,0,0,0,0,1],[0,0,0,0,0,1],[0,0,0,0,0,1],[0,0,0,0,0,1],[0,0,0,0,0,2],[0,0,0,0,0,2],[0,0,0,0,0,2]]
+
+// vertical (same col)
+const board = [[0,0,2,2,2,2],[0,0,0,1,1,1],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
+
+console.log(checkWinner(board))
