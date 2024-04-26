@@ -1540,3 +1540,16 @@
 // ______________________________
 // ______________________________
 //  
+
+const buildBoard = () => {
+  
+  let b = Array(7).fill([])
+
+  b.map((col, i) => {
+    b[i] = Array(6).fill(0)
+  })
+
+  console.log(b)
+}
+
+console.log(buildBoard())
