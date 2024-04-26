@@ -4,13 +4,16 @@ import React, { useState, useEffect } from 'react';
 export default function ConnectFour() {
   const [ winner, setWinner ] = useState(1)
   const [ restart, setRestart ] = useState(true)
+  const [ showRestart, setShowRestart ] = useState(true)
   const [ board, setBoard ] = useState([])
   const [ player, setPlayer ] = useState(1)
 
   useEffect(() => {
     let b = Array(7).fill(null).map(() => Array(6).fill(0))
     setBoard(b)
-  },[])
+    // setShowRestart(0)
+    setRestart(0)
+  },[restart])
 
   useEffect(() => {
     setPlayer(prev => prev === 1 ? 2 : 1)
@@ -33,11 +36,20 @@ export default function ConnectFour() {
     })
   }
 
+  const handleRestart = () => { setRestart(1) }
+
+  const checkWinner = () => {
+    // loop
+      // if same index of 4 col = 1 or 2
+      // if index + 1 of 4 cols = 1 or 2
+      // if index - 1 of 4 cols = 1 or 2
+  }
+
 
   return (
     <>
       { winner > 0 &&
-        <h1>Winner</h1>
+        <h1>{JSON.stringify(board)}</h1>
       }
       <div className="board">
         { board.map((col, i) => (
@@ -50,8 +62,8 @@ export default function ConnectFour() {
           </div>
         ))}
       </div>
-      { restart &&
-        <button>Restart</button>
+      { showRestart &&
+        <button onClick={handleRestart}>Restart</button>
       }
     </>
   );
