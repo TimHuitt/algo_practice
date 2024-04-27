@@ -1542,32 +1542,42 @@
 //  
 
 const checkWinner = (board) => {
-  // if same index of 4 col = 1 or 2
-  // if index + 1 of 4 cols = 1 or 2
-  // if index - 1 of 4 cols = 1 or 2
-  // if any 4 of 1 col = 1 or 2
-  let count = {'1': 0, '2': 0}
-  let winner = 0
-
-  board.map((e, i) => {
-    e.map((f, j) => {
-      if (f > 0) {
-        count[f] += 1
-      } else {
-        count = {'1': 0, '2': 0}
+  let win = 0
+  const delta = {
+    'vert': [1, 0],
+    'hor': [0, 1],
+    'desc': [1, 1],
+    'asc': [1, -1],
+  }
+  
+  for (let col = 0; col < board.length; col++) {
+    for (let cell = 0; cell < board[col].length; cell++) {
+      const current = board[col][cell]
+      if (current > 0) {
+        for (dir in delta) {
+          let cells = []
+          let x = cell
+          let y = col
+          for (let i = 0; i < 3; i++) {
+            x = x + (1 * delta[dir][0])
+            y = y + (1 * delta[dir][1])
+            
+            if (x > 5 || x < 0 || y > 6 || y < 0) {
+              break
+            } else {
+              cells.push(board[y][x])
+              console.log(dir, y, x, current, board[y][x])
+            }
+          }
+          if (cells && cells.length > 2) {
+            if (cells.every((e) => e === 1) && current === 1) win = 1
+            if (cells.every((e) => e === 2) && current === 2) win = 2
+          }
+        }
       }
-      
-      if (count['1'] === 4) {
-        winner = 1
-      } else if (count['2'] === 4) {
-        winner = 2
-      }
-    })
-    
-    count = {'1': 0, '2': 0}
-  })
-
-  return winner
+    }
+  }
+  return win
 }
 
 // asc right (-)
@@ -1580,6 +1590,6 @@ const checkWinner = (board) => {
 // const board = [[0,0,0,0,0,1],[0,0,0,0,0,1],[0,0,0,0,0,1],[0,0,0,0,0,1],[0,0,0,0,0,2],[0,0,0,0,0,2],[0,0,0,0,0,2]]
 
 // vertical (same col)
-const board = [[0,0,2,2,2,2],[0,0,0,1,1,1],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
+// const board = [[0,0,1,2,2,2],[0,0,1,1,1,1],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
 
 console.log(checkWinner(board))
