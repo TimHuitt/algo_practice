@@ -325,7 +325,7 @@
 //           setFlat(v)
 //         } else {
 //           if (flat[count] == 'undefined') {
-//             flat[count].append(v)
+//             flat[count].push(v)
 //           } else {
 //             flat[count] = v
 //           }
@@ -361,7 +361,7 @@
 //       obj = {}
 //     } else {
 //       if (Array.isArray(flat) && Object.keys(obj).length === 0) {
-//         flat.append(value)
+//         flat.push(value)
 //       } else if (Array.isArray(flat)) {
 //         ''
 //       } else {
@@ -1541,55 +1541,144 @@
 // ______________________________
 //  
 
-const checkWinner = (board) => {
-  let win = 0
-  const delta = {
-    'vert': [1, 0],
-    'hor': [0, 1],
-    'desc': [1, 1],
-    'asc': [1, -1],
-  }
-  
-  for (let col = 0; col < board.length; col++) {
-    for (let cell = 0; cell < board[col].length; cell++) {
-      const current = board[col][cell]
-      if (current > 0) {
-        for (dir in delta) {
-          let cells = []
-          let x = cell
-          let y = col
-          for (let i = 0; i < 3; i++) {
-            x = x + (1 * delta[dir][0])
-            y = y + (1 * delta[dir][1])
-            
-            if (x > 5 || x < 0 || y > 6 || y < 0) {
-              break
-            } else {
-              cells.push(board[y][x])
-              console.log(dir, y, x, current, board[y][x])
-            }
-          }
-          if (cells && cells.length > 2) {
-            if (cells.every((e) => e === 1) && current === 1) win = 1
-            if (cells.every((e) => e === 2) && current === 2) win = 2
-          }
-        }
-      }
-    }
-  }
-  return win
-}
+// const checkWinner = (board) => {
+//   let win = 0
+//   const delta = {
+//     'vert': [1, 0],
+//     'hor': [0, 1],
+//     'desc': [1, 1],
+//     'asc': [1, -1],
+//   }
+//   
+//   for (let col = 0; col < board.length; col++) {
+//     for (let cell = 0; cell < board[col].length; cell++) {
+//       const current = board[col][cell]
+//       if (current > 0) {
+//         for (dir in delta) {
+//           let cells = []
+//           let x = cell
+//           let y = col
+//           for (let i = 0; i < 3; i++) {
+//             x = x + (1 * delta[dir][0])
+//             y = y + (1 * delta[dir][1])
+//             
+//             if (x > 5 || x < 0 || y > 6 || y < 0) {
+//               break
+//             } else {
+//               cells.push(board[y][x])
+//               console.log(dir, y, x, current, board[y][x])
+//             }
+//           }
+//           if (cells && cells.length > 2) {
+//             if (cells.every((e) => e === 1) && current === 1) win = 1
+//             if (cells.every((e) => e === 2) && current === 2) win = 2
+//           }
+//         }
+//       }
+//     }
+//   }
+//   return win
+// }
+// 
+// // asc right (-)
+// // const board = [[0,0,0,0,0,2],[0,0,0,0,2,1],[0,0,0,2,1,2],[0,0,2,1,2,1],[0,0,0,0,0,1],[0,0,0,0,0,0],[0,0,0,0,0,0]]
+// 
+// // desc right (+)
+// // const board = [[0,0,1,2,1,2],[0,0,0,1,1,2],[0,0,0,0,1,2],[0,0,0,0,0,1],[0,0,0,0,0,2],[0,0,0,0,0,2],[0,0,0,0,0,0]]
+// 
+// // horizontal (same index)
+// // const board = [[0,0,0,0,0,1],[0,0,0,0,0,1],[0,0,0,0,0,1],[0,0,0,0,0,1],[0,0,0,0,0,2],[0,0,0,0,0,2],[0,0,0,0,0,2]]
+// 
+// // vertical (same col)
+// // const board = [[0,0,1,2,2,2],[0,0,1,1,1,1],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
+// 
+// console.log(checkWinner(board))
 
-// asc right (-)
-// const board = [[0,0,0,0,0,2],[0,0,0,0,2,1],[0,0,0,2,1,2],[0,0,2,1,2,1],[0,0,0,0,0,1],[0,0,0,0,0,0],[0,0,0,0,0,0]]
+// ______________________________
+// ______________________________
+//  flatten value
 
-// desc right (+)
-// const board = [[0,0,1,2,1,2],[0,0,0,1,1,2],[0,0,0,0,1,2],[0,0,0,0,0,1],[0,0,0,0,0,2],[0,0,0,0,0,2],[0,0,0,0,0,0]]
+// const flatten = (value) => {
+// 
+//   return value.reduce((acc, val) => {
+// 
+//     // if array
+//     if (Array.isArray(val)) {
+//       // set acc to flattened value
+// 
+//     // if object
+//     } else if (typeof val === 'object') {
+//       // initialize child obj
+//       
+//       // loop val
+//         // if val is obj
+//           //  set child obj to value of of key ()
+//     
+//     // if val
+//     } else {
+// 
+//     }
+//   })
+// 
+//   
+// }
+// 
+// const value1 = {a: 1, b: {c: 2, d: 3, e: {f: 4}}}
+// // output: { a: 1, c: 2, d: 3, f: 4 }
+// 
+// const value2 = [1, 2,[3, 4, [5, 6]]]
+// // output: [ 1, 2, 3, 4, 5, 6 ]
+// 
+// const value3 = [1, 2, [3], {
+//   a: 4,
+//   b: {
+//     c: 5,
+//     d: [6, 7, [8, 9, [10]]]
+//   }
+// }]
+// // output: [1, 2, 3, {a: 4, c: 5, d: [6, 7, 8, 9, 10]}]
+// 
+// 
+// // console.log(flatten(value1))
+// console.log(flatten(value2))
+// // console.log(flatten(value3))
 
-// horizontal (same index)
-// const board = [[0,0,0,0,0,1],[0,0,0,0,0,1],[0,0,0,0,0,1],[0,0,0,0,0,1],[0,0,0,0,0,2],[0,0,0,0,0,2],[0,0,0,0,0,2]]
 
-// vertical (same col)
-// const board = [[0,0,1,2,2,2],[0,0,1,1,1,1],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
 
-console.log(checkWinner(board))
+// ______________________________
+// ______________________________
+//  phone digit chars possible
+
+// const letterCombinations = (digits) => {
+//   digits = parseInt(digits)
+//   if (digits.length > 1) return false
+// 
+//   const charMap = {
+//     2: ['a', 'b', 'c'],
+//     3: ['d', 'e', 'f'],
+//     4: ['g', 'h', 'i'],
+//     5: ['j', 'l', 'l'],
+//     6: ['m', 'n', 'o'],
+//     7: ['p', 'q', 'r', 's'],
+//     8: ['t', 'u', 'v'],
+//     9: ['w', 'x', 'y', 'z'],
+//   }
+// 
+//   const output = []
+//   let count = 0
+// 
+//   while (digits) {
+//     const digit = digits % 10
+//     if (charMap.hasOwnProperty(digit)) {
+//       
+//     }
+// 
+//     digits = Math.floor(digits / 10)
+//     count = 0
+//   }
+// 
+//   return output
+// }
+// 
+// digits = "23"
+// console.log(letterCombinations(digits))

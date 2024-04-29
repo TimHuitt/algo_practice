@@ -16,7 +16,6 @@ export default function ConnectFour() {
   },[restart])
 
   useEffect(() => {
-    setPlayer(prev => prev === 1 ? 2 : 1)
     const isWinner = checkWinner()
     setWinner(isWinner)
     if (isWinner) setShowRestart(true)
@@ -24,6 +23,7 @@ export default function ConnectFour() {
 
   const handleClick = (e) => {
     if (winner) return null
+
     const getRow = (col) => {
       for (let i = 0; i < board[col].length; i++) {
         if (board[col][i] !== 0) return i - 1
@@ -34,6 +34,10 @@ export default function ConnectFour() {
     setBoard(currentBoard => {
       const col = parseInt(e.target.id.slice(0,1))
       const row = getRow(col)
+      if (row <= 5 && row >= 0 && col <= 6 && col >= 0) {
+        setPlayer(prev => prev === 1 ? 2 : 1)
+      }
+
       const newBoard = currentBoard.map((c) => [...c])
       newBoard[col][row] = player
       return newBoard
@@ -85,7 +89,7 @@ export default function ConnectFour() {
   return (
     <>
       { winner > 0 &&
-        <h1>Player {winner} Wins{JSON.stringify(board)}</h1>
+        <h1>Player {winner} Wins</h1>
       }
       <div className="board">
         { board.map((col, i) => (
