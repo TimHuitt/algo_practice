@@ -1539,10 +1539,17 @@
 
 // ______________________________
 // ______________________________
-//  
+//  find connect 4 winner
 
-// const checkWinner = (board) => {
+// const checkWinner = () => {
+//   const pieces = board.reduce((acc, e) => {
+//     return acc + e.reduce((acc,i) => acc + i)
+//   },0)
+// 
+//   console.log(pieces)
+// 
 //   let win = 0
+// 
 //   const delta = {
 //     'vert': [1, 0],
 //     'hor': [0, 1],
@@ -1553,11 +1560,13 @@
 //   for (let col = 0; col < board.length; col++) {
 //     for (let cell = 0; cell < board[col].length; cell++) {
 //       const current = board[col][cell]
+//       
 //       if (current > 0) {
 //         for (dir in delta) {
 //           let cells = []
 //           let x = cell
 //           let y = col
+// 
 //           for (let i = 0; i < 3; i++) {
 //             x = x + (1 * delta[dir][0])
 //             y = y + (1 * delta[dir][1])
@@ -1566,7 +1575,6 @@
 //               break
 //             } else {
 //               cells.push(board[y][x])
-//               console.log(dir, y, x, current, board[y][x])
 //             }
 //           }
 //           if (cells && cells.length > 2) {
@@ -1591,6 +1599,10 @@
 // 
 // // vertical (same col)
 // // const board = [[0,0,1,2,2,2],[0,0,1,1,1,1],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]
+// 
+// // full
+// const board = [[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1],[1,1,1,1,1,1],]
+// 
 // 
 // console.log(checkWinner(board))
 
@@ -1682,3 +1694,55 @@
 // 
 // digits = "23"
 // console.log(letterCombinations(digits))
+
+
+// ______________________________
+// ______________________________
+//  event target
+
+
+// class EventTarget {
+//   constructor() {
+//     this.listeners = {}
+//   }
+// 
+//   addEventListener(name, callback) {
+//     if (!this.listeners[name]) {
+//       this.listeners[name] = []
+//     }
+//     this.listeners[name].push(callback)
+//   }
+// 
+//   removeEventListener(name, callback) {
+//     if (this.listeners[name]) {
+//       const index = this.listeners[name].indexOf(callback)
+//       if (index !== -1) {
+//         this.listeners[name].splice(index, 1)
+//         if (this.listeners[name].length === 0) {
+//           delete this.listeners[name]
+//         }
+//       }
+//     }
+//   }
+// 
+//   dispatchEvent(name) {
+//     if (this.listeners[name]) {
+//       this.listeners[name].forEach((callback) => callback())
+//     }
+//   }
+// }
+// 
+// const target = new EventTarget();
+// const logHello = () => console. log ('hello');
+// const logThere = () => console. log ('there');
+// const logWorld = () => console. log ('world');
+// target.addEventListener ('hello', logHello);
+// target.addEventListener ('there', logThere);
+// target.addEventListener ('world', logWorld);
+// target.dispatchEvent ('hello'); 
+// target.dispatchEvent ('there')
+// target.dispatchEvent ('world');
+// target.removeEventListener ('hello', logHello);
+// target.dispatchEvent ('hello'); target. dispatchEvent ('there'); target. dispatchEvent ( 'world');
+// target.removeEventListener ('there', logThere);
+// target.dispatchEvent ('hello'); target.dispatchEvent ('world'); target. dispatchEvent ('there');
