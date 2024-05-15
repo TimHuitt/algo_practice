@@ -1746,3 +1746,41 @@
 // target.dispatchEvent ('hello'); target. dispatchEvent ('there'); target. dispatchEvent ( 'world');
 // target.removeEventListener ('there', logThere);
 // target.dispatchEvent ('hello'); target.dispatchEvent ('world'); target. dispatchEvent ('there');
+
+
+// ______________________________
+// ______________________________
+// count each word
+
+// const wordCloud = (str) => {
+//   let output = {}
+//   const words = str.split(' ')
+// 
+//   for (const word of words) {
+//     let cleaned = ''
+// 
+//     for (let char of word) {
+//       char = char.toLowerCase()
+//       
+//       if (char >= 'a' && char <= 'z' || char === '-') {
+//         cleaned += char
+//       } else {
+//         const next = word.slice(word.indexOf(char))
+//         console.log(next)
+//         break
+//       }
+//     }
+// 
+//     if (cleaned) {
+//       output[cleaned] = (output[cleaned] || 0) + 1
+//     }
+//   }
+// 
+//   return output
+// }
+// 
+// const str1 = "We came, we saw, we conquered...then we ate Bill's (Mille-Feuille) cake."
+// const str2 = 'The bill came to five dollars.'
+// 
+// console.log(wordCloud(str1))
+// console.log(wordCloud(str2))
