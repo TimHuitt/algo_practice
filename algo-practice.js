@@ -1784,3 +1784,6 @@
 // 
 // console.log(wordCloud(str1))
 // console.log(wordCloud(str2))
+
+const data = ['main-images/posts/1e9222b9-8550-44b7-b447-4918e32ed71f/dbcm6cytn4qux4guqt70', 'main-images/posts/1e9222b9-8550-44b7-b447-4918e32ed71f/wobtoerzdyyfg1727wmb']
+console.log(data[0].split('/')[2])

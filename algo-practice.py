@@ -311,3 +311,50 @@
 # redShirtHeights = [5, 8, 1, 3, 4]
 # blueShirtHeights = [6, 9, 2, 4, 5]
 # print(classPhotos(redShirtHeights, blueShirtHeights))
+
+
+# _________________________________ //
+# _________________________________ //
+# Building Linked Lists
+
+class Node:
+  def __init__(self, value):
+    self.value = value
+    self.next = None
+
+class LinkedList:
+  def __init__(self):
+    self.head = None
+
+  def enqueue(self, value):
+    node = Node(value)
+    current = self.head
+    while current.next:
+      current = current.next
+    current.next = node
+
+  def push(self, value):
+    node = Node(value)
+    if self.head is None:
+      self.head = node
+      return
+    else:
+      node.next = self.head
+      self.head = node
+
+  
+  def print_list(self):
+    current = self.head
+    while current:
+      print(current.value, end=" -> ")
+      current = current.next
+
+ll = LinkedList()
+
+ll.push('test1')
+ll.push('test2')
+ll.enqueue('test3')
+ll.enqueue('test4')
+ll.push('test5')
+
+print(ll.print_list())
