@@ -1785,38 +1785,73 @@
 // console.log(wordCloud(str1))
 // console.log(wordCloud(str2))
 
-const smallestDifference = (arrayOne, arrayTwo) => {
-  // initialize output array
-  let output = [0, 0]
 
-  // set smallest to largest
-  let smallest = Math.max(...arrayOne, ...arrayTwo)
-  
-  // sort arrays
-  arrayOne.sort((a, b) => a - b)
-  arrayTwo.sort((a, b) => a - b)
-  
-  // get absolute difference
-  const getDiff = (x, y) => {
-    return x > y ? x - y : y - x
-  }
+// ______________________________
+// ______________________________
+// find the smallest absolute difference
 
-  // loop arrays
-  for (let i of arrayOne) {
-    for (let j of arrayTwo) {
-      const diff = getDiff(i, j)
-      if (diff < smallest) {
-        smallest = diff
-        output = [i, j]
-      }
+// const smallestDifference = (arrayOne, arrayTwo) => {
+//   // initialize output array
+//   let output = [0, 0]
+// 
+//   // set smallest to largest
+//   let smallest = Math.max(...arrayOne, ...arrayTwo)
+//   
+//   // sort arrays
+//   arrayOne.sort((a, b) => a - b)
+//   arrayTwo.sort((a, b) => a - b)
+//   
+//   // get absolute difference
+//   const getDiff = (x, y) => {
+//     return x > y ? x - y : y - x
+//   }
+// 
+//   // loop arrays
+//   for (let i of arrayOne) {
+//     for (let j of arrayTwo) {
+//       const diff = getDiff(i, j)
+//       if (diff < smallest) {
+//         smallest = diff
+//         output = [i, j]
+//       }
+//     }
+//   }
+// 
+//   // return smallest difference
+//   return output
+// 
+// }
+// 
+// const arrayOne = [-1,5,10,20,28,3]
+// const arrayTwo = [26,134,135,15,17]
+// console.log(smallestDifference(arrayOne, arrayTwo))
+
+
+// ______________________________
+// ______________________________
+// move element to end
+
+const moveElementToEnd = (array, toMove) => {
+  let len = array.length
+
+  for (let i = 0; i < len;) {
+    if (array[i] === toMove) {
+      const front = array.slice(0, i)
+      const back = array.slice(i + 1, array.length)
+      array = [...front, ...back]
+      array.push(toMove)
+      len--
+      console.log(array, i)
+    } else {
+      i++
     }
   }
 
-  // return smallest difference
-  return output
-
+  return array
 }
 
-const arrayOne = [-1,5,10,20,28,3]
-const arrayTwo = [26,134,135,15,17]
-console.log(smallestDifference(arrayOne, arrayTwo))
+// array = [2,1,2,2,2,3,4,2]
+array = [5, 5, 5, 5, 5, 5, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12]
+toMove = 5
+
+console.log(moveElementToEnd(array, toMove))
