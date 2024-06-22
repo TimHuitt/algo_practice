@@ -1861,28 +1861,60 @@
 // ______________________________
 // is array monotonic
 
+// const isMonotonic = (array) => {
+//   // determine initial inc/dec
+//   const isDec = array[0] > array[1] ? true : false
+// 
+//   // loop array
+//   for (let i = 0; i < array.length; i++) {
+//     // confirm array continues in same direction
+//     if (isDec && array[i] < array[i+1]) {
+//       console.log(array[i], array[i+1])
+//       return false
+//     } else if (!isDec && array[i] > array[i+1]) {
+//       console.log(array[i], array[i+1])
+//       return false
+//     }
+// 
+//   }
+// 
+//   return true
+// }
+// 
+// // const array1 = [-1, -1, -2, -3, -4, -5, -5, -5, -6, -7, -8, -8, -9, -10, -11]
+// const array2 = [-1, -5, 10]
+// 
+// // console.log(isMonotonic(array1))
+// console.log(isMonotonic(array2))
+
+// ______________________________
+// ______________________________
+// is array monotonic
+
 const isMonotonic = (array) => {
   // determine initial inc/dec
-  const isDec = array[0] > array[1] ? true : false
+  let isDec = false
 
+  if (array[0] < 0) {
+    isDec = array[0] >= array[1] ? true : false
+  } else {
+    isDec = array[0] > array[1] ? true : false
+  }
   // loop array
   for (let i = 0; i < array.length; i++) {
     // confirm array continues in same direction
     if (isDec && array[i] < array[i+1]) {
-      console.log(array[i], array[i+1])
       return false
     } else if (!isDec && array[i] > array[i+1]) {
-      console.log(array[i], array[i+1])
       return false
     }
-
   }
 
   return true
 }
 
 const array1 = [-1, -1, -2, -3, -4, -5, -5, -5, -6, -7, -8, -8, -9, -10, -11]
-const array2 = [-1, -5, 10]
+const array2 = [1, 1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 8, 9, 10, 11]
 
 console.log(isMonotonic(array1))
 console.log(isMonotonic(array2))
