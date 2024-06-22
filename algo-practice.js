@@ -1785,5 +1785,38 @@
 // console.log(wordCloud(str1))
 // console.log(wordCloud(str2))
 
-const data = ['main-images/posts/1e9222b9-8550-44b7-b447-4918e32ed71f/dbcm6cytn4qux4guqt70', 'main-images/posts/1e9222b9-8550-44b7-b447-4918e32ed71f/wobtoerzdyyfg1727wmb']
-console.log(data[0].split('/')[2])
+const smallestDifference = (arrayOne, arrayTwo) => {
+  // initialize output array
+  let output = [0, 0]
+
+  // set smallest to largest
+  let smallest = Math.max(...arrayOne, ...arrayTwo)
+  
+  // sort arrays
+  arrayOne.sort((a, b) => a - b)
+  arrayTwo.sort((a, b) => a - b)
+  
+  // get absolute difference
+  const getDiff = (x, y) => {
+    return x > y ? x - y : y - x
+  }
+
+  // loop arrays
+  for (let i of arrayOne) {
+    for (let j of arrayTwo) {
+      const diff = getDiff(i, j)
+      if (diff < smallest) {
+        smallest = diff
+        output = [i, j]
+      }
+    }
+  }
+
+  // return smallest difference
+  return output
+
+}
+
+const arrayOne = [-1,5,10,20,28,3]
+const arrayTwo = [26,134,135,15,17]
+console.log(smallestDifference(arrayOne, arrayTwo))
