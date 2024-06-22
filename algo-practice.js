@@ -1831,27 +1831,58 @@
 // ______________________________
 // move element to end
 
-const moveElementToEnd = (array, toMove) => {
-  let len = array.length
+// const moveElementToEnd = (array, toMove) => {
+//   let len = array.length
+// 
+//   for (let i = 0; i < len;) {
+//     if (array[i] === toMove) {
+//       const front = array.slice(0, i)
+//       const back = array.slice(i + 1, array.length)
+//       array = [...front, ...back]
+//       array.push(toMove)
+//       len--
+//       console.log(array, i)
+//     } else {
+//       i++
+//     }
+//   }
+// 
+//   return array
+// }
+// 
+// // array = [2,1,2,2,2,3,4,2]
+// array = [5, 5, 5, 5, 5, 5, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12]
+// toMove = 5
+// 
+// console.log(moveElementToEnd(array, toMove))
 
-  for (let i = 0; i < len;) {
-    if (array[i] === toMove) {
-      const front = array.slice(0, i)
-      const back = array.slice(i + 1, array.length)
-      array = [...front, ...back]
-      array.push(toMove)
-      len--
-      console.log(array, i)
-    } else {
-      i++
+
+// ______________________________
+// ______________________________
+// is array monotonic
+
+const isMonotonic = (array) => {
+  // determine initial inc/dec
+  const isDec = array[0] > array[1] ? true : false
+
+  // loop array
+  for (let i = 0; i < array.length; i++) {
+    // confirm array continues in same direction
+    if (isDec && array[i] < array[i+1]) {
+      console.log(array[i], array[i+1])
+      return false
+    } else if (!isDec && array[i] > array[i+1]) {
+      console.log(array[i], array[i+1])
+      return false
     }
+
   }
 
-  return array
+  return true
 }
 
-// array = [2,1,2,2,2,3,4,2]
-array = [5, 5, 5, 5, 5, 5, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12]
-toMove = 5
+const array1 = [-1, -1, -2, -3, -4, -5, -5, -5, -6, -7, -8, -8, -9, -10, -11]
+const array2 = [-1, -5, 10]
 
-console.log(moveElementToEnd(array, toMove))
+console.log(isMonotonic(array1))
+console.log(isMonotonic(array2))
