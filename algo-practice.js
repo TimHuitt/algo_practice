@@ -1863,58 +1863,75 @@
 
 // const isMonotonic = (array) => {
 //   // determine initial inc/dec
-//   const isDec = array[0] > array[1] ? true : false
+//   let isDec = false
 // 
+//   if (array[0] < 0) {
+//     isDec = array[0] >= array[1] ? true : false
+//   } else {
+//     isDec = array[0] > array[1] ? true : false
+//   }
 //   // loop array
 //   for (let i = 0; i < array.length; i++) {
 //     // confirm array continues in same direction
 //     if (isDec && array[i] < array[i+1]) {
-//       console.log(array[i], array[i+1])
 //       return false
 //     } else if (!isDec && array[i] > array[i+1]) {
-//       console.log(array[i], array[i+1])
 //       return false
 //     }
-// 
 //   }
 // 
 //   return true
 // }
 // 
-// // const array1 = [-1, -1, -2, -3, -4, -5, -5, -5, -6, -7, -8, -8, -9, -10, -11]
-// const array2 = [-1, -5, 10]
+// const array1 = [-1, -1, -2, -3, -4, -5, -5, -5, -6, -7, -8, -8, -9, -10, -11]
+// const array2 = [1, 1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 8, 9, 10, 11]
 // 
-// // console.log(isMonotonic(array1))
+// console.log(isMonotonic(array1))
 // console.log(isMonotonic(array2))
 
+
 // ______________________________
 // ______________________________
-// is array monotonic
+// find apartment closest to requirements in contiguous blocks
 
-const isMonotonic = (array) => {
-  // determine initial inc/dec
-  let isDec = false
+const apartmentHunting = (blocks, reqs) => {
+  const blockData = {}
 
-  if (array[0] < 0) {
-    isDec = array[0] >= array[1] ? true : false
-  } else {
-    isDec = array[0] > array[1] ? true : false
-  }
-  // loop array
-  for (let i = 0; i < array.length; i++) {
-    // confirm array continues in same direction
-    if (isDec && array[i] < array[i+1]) {
-      return false
-    } else if (!isDec && array[i] > array[i+1]) {
-      return false
-    }
+  for (let i = blocks.length - 1; i >= 0; i--) {
+    blockData[i] = blocks[i]
   }
 
-  return true
+  return blockData
 }
 
-const array1 = [-1, -1, -2, -3, -4, -5, -5, -5, -6, -7, -8, -8, -9, -10, -11]
-const array2 = [1, 1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 8, 9, 10, 11]
+blocks = [
+  {
+    "gym": false,
+    "school": true,
+    "store": false,
+  },
+  {
+    "gym": true,
+    "school": false,
+    "store": false,
+  },
+  {
+    "gym": true,
+    "school": true,
+    "store": false,
+  },
+  {
+    "gym": false,
+    "school": true,
+    "store": false,
+  },
+  {
+    "gym": false,
+    "school": true,
+    "store": true,
+  },
+]
+reqs = ["gym", "school", "store"]
 
-console.log(isMonotonic(array1))
-console.log(isMonotonic(array2))
+console.log(apartmentHunting(blocks, reqs))
+
