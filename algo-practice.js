@@ -1892,4 +1892,32 @@
 
 // ______________________________
 // ______________________________
-// find apartment closest to requirements in contiguous blocks
+// spiral traversal
+
+const spiralTraversal = (array) => {
+  const cols = array[0].length
+  const rows = array.length
+  const cells = cols * rows
+
+  // add first row
+
+  // add last value of next n - 2 rows
+
+  // add last row in reverse order
+
+  // add first value of prev n - 2 rows
+
+  // restart cycle -1 at end, +1 at start
+  
+
+  return cells
+}
+
+array = [
+  [1, 2, 3, 4],
+  [12, 13, 14, 5],
+  [11, 16, 15, 6],
+  [10, 9, 8, 7],
+]
+
+console.log(spiralTraversal(array))
