@@ -1895,22 +1895,47 @@
 // spiral traversal
 
 const spiralTraversal = (array) => {
-  const cols = array[0].length
-  const rows = array.length
-  const cells = cols * rows
+  let height = array.length - 1
+  let width = array[0].length - 1
+  const cells = array.length * array[0].length
+  let top = 0
+  let start = 0
 
-  // add first row
+  const output = []
 
-  // add last value of next n - 2 rows
-
-  // add last row in reverse order
-
-  // add first value of prev n - 2 rows
-
-  // restart cycle -1 at end, +1 at start
+  const getCircle = () => {
+    console.log('get')
+    // add first row
+    output.push(...array[top].splice(start, width))
+    top++
   
+    // add last value of next n - 2 rows
+    for (let i = top; i < height; i++) {
+      output.push(array[i][width])
+    }
+    width--
+  
+    // add last row in reverse order
+    output.push(...array[height].reverse())
+  
+    // add first value of prev n - 2 rows
+    for (let i = height - top; i > 0; i--) {
+      output.push(array[i][start])
+    }
+    start++
+  }
 
-  return cells
+  // restart cycle -1 at height, +1 at start
+  while (output.length < cells) {
+    getCircle()
+  }
+
+  console.log('height:', height)
+  console.log('width:', width)
+  console.log('top:', top)
+  console.log('start:', start)
+
+  return output
 }
 
 array = [
