@@ -1904,24 +1904,26 @@ const spiralTraversal = (array) => {
   const output = []
 
   const getCircle = () => {
-    console.log('get')
     // add first row
-    output.push(...array[top].splice(start, width))
+    output.push(...array[top].splice(start, width + 1))
     top++
   
-    // add last value of next n - 2 rows
+    // add last value of next n rows
     for (let i = top; i < height; i++) {
       output.push(array[i][width])
     }
-    width--
   
     // add last row in reverse order
-    output.push(...array[height].reverse())
+    const copy = [...array[height]].splice(start, width + 1)
+    output.push(...copy.reverse())
+    console.log(copy)
   
-    // add first value of prev n - 2 rows
+    // add first value of prev n rows
     for (let i = height - top; i > 0; i--) {
       output.push(array[i][start])
     }
+    width--
+    height--
     start++
   }
 
