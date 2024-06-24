@@ -1902,27 +1902,39 @@ const spiralTraversal = (array) => {
   let start = 0
 
   const output = []
+  let temp = []
 
   const getCircle = () => {
     // add first row
-    output.push(...array[top].splice(start, width + 1))
+    temp = [...array[top]]
+    temp = temp.splice(start, width + 1)
+    output.push(...temp)
+
+    console.log('1:', temp)
     top++
   
     // add last value of next n rows
     for (let i = top; i < height; i++) {
       output.push(array[i][width])
+
+      console.log('2:', array[i][width])
     }
   
     // add last row in reverse order
-    const copy = [...array[height]].splice(start, width + 1)
-    output.push(...copy.reverse())
-    console.log(copy)
+    temp = [...array[height]]
+    temp = [...temp.reverse().splice(start, width + 1)]
+    output.push(...temp)
+
+    console.log('3:', temp)
   
     // add first value of prev n rows
     for (let i = height - top; i > 0; i--) {
       output.push(array[i][start])
+
+      console.log('4:', array[i][start])
     }
-    width--
+
+    width -= 1
     height--
     start++
   }
@@ -1940,11 +1952,19 @@ const spiralTraversal = (array) => {
   return output
 }
 
-array = [
-  [1, 2, 3, 4],
-  [12, 13, 14, 5],
-  [11, 16, 15, 6],
-  [10, 9, 8, 7],
-]
+// array = [
+//   [1, 2, 3, 4],
+//   [12, 13, 14, 5],
+//   [11, 16, 15, 6],
+//   [10, 9, 8, 7],
+// ]
 
+array = [
+  [19, 32, 33, 34, 25, 8],
+  [16, 15, 14, 13, 12, 11],
+  [18, 31, 36, 35, 26, 9],
+  [1, 2, 3, 4, 5, 6],
+  [20, 21, 22, 23, 24, 7],
+  [17, 30, 29, 28, 27, 10]
+]
 console.log(spiralTraversal(array))
