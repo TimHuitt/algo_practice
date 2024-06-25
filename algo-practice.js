@@ -1894,63 +1894,134 @@
 // ______________________________
 // spiral traversal
 
-const spiralTraversal = (array) => {
-  let height = array.length - 1
-  let width = array[0].length - 1
-  const cells = array.length * array[0].length
-  let top = 0
-  let start = 0
+// const spiralTraversal = (array) => {
+//   let height = array.length - 1
+//   let width = array[0].length - 1
+//   const cells = array.length * array[0].length
+//   let top = 0
+//   let start = 0
+// 
+//   const output = []
+//   let temp = []
+// 
+//   const getCircle = () => {
+//     // add first row
+//     temp = [...array[top]]
+//     console.log(width)
+//     temp = temp.splice(start, width - start)
+//     output.push(...temp)
+// 
+//     console.log('1:', temp)
+//   
+//     // add last value of next n rows
+//     for (let i = top; i < height; i++) {
+//       output.push(array[i][width])
+// 
+//       console.log('2:', array[i][width])
+//     }
+//   
+//     // add last row in reverse order
+//     temp = [...array[height]]
+//     temp = [...temp.reverse().splice(start, width - start)]
+//     output.push(...temp)
+// 
+//     console.log('3:', temp)
+//   
+//     // add first value of prev n rows
+//     for (let i = height; i >= top + 1; i--) {
+//       output.push(array[i][start])
+// 
+//       console.log('4:', array[i][start])
+//     }
+//     
+//     width--
+//     height--
+//     top++
+//     start++
+//   }
+// 
+//   // restart cycle -1 at height, +1 at start
+//   while (output.length < cells) {
+//     getCircle()
+//   }
+// 
+//   console.log('height:', height)
+//   console.log('width:', width)
+//   console.log('top:', top)
+//   console.log('start:', start)
+// 
+//   return output
+// }
+// 
+// array = [
+//   [1, 2, 3, 4],
+//   [12, 13, 14, 5],
+//   [11, 16, 15, 6],
+//   [10, 9, 8, 7],
+// ]
 
-  const output = []
-  let temp = []
+// array = [
+//   [19, 32, 33, 34, 25, 8],
+//   [16, 15, 14, 13, 12, 11],
+//   [18, 31, 36, 35, 26, 9],
+//   [1, 2, 3, 4, 5, 6],
+//   [20, 21, 22, 23, 24, 7],
+//   [17, 30, 29, 28, 27, 10]
+// ]
 
-  const getCircle = () => {
-    // add first row
-    temp = [...array[top]]
-    temp = temp.splice(start, width + 1)
-    output.push(...temp)
+// const array = [
+//   [ 1,  2,  3,  4,  5,  6],
+//   [20, 21, 22, 23, 24,  7],
+//   [19, 32, 33, 34, 25,  8],
+//   [18, 31, 36, 35, 26,  9],
+//   [17, 30, 29, 28, 27, 10],
+//   [16, 15, 14, 13, 12, 11]
+// ]
 
-    console.log('1:', temp)
-    top++
-  
-    // add last value of next n rows
-    for (let i = top; i < height; i++) {
-      output.push(array[i][width])
 
-      console.log('2:', array[i][width])
-    }
-  
-    // add last row in reverse order
-    temp = [...array[height]]
-    temp = [...temp.reverse().splice(start, width + 1)]
-    output.push(...temp)
+// console.log(spiralTraversal(array))
 
-    console.log('3:', temp)
-  
-    // add first value of prev n rows
-    for (let i = height - top; i > 0; i--) {
-      output.push(array[i][start])
 
-      console.log('4:', array[i][start])
-    }
+// ______________________________
+// ______________________________
+// spiral traversal (cleaned)
 
-    width -= 1
-    height--
-    start++
-  }
-
-  // restart cycle -1 at height, +1 at start
-  while (output.length < cells) {
-    getCircle()
-  }
-
-  console.log('height:', height)
-  console.log('width:', width)
-  console.log('top:', top)
-  console.log('start:', start)
-
-  return output
-}
+// const spiralTraverse = (array) => {
+//   let height = array.length - 1
+//   let width = array[0].length - 1
+//   const cells = array.length * array[0].length
+//   let top = 0
+//   let start = 0
+// 
+//   const output = []
+//   let temp = []
+// 
+//   while (output.length < cells) {
+//     for (let i = start; i <= width && output.length < cells; i++) {
+//       output.push(array[top][i])
+//     }
+//   
+//     for (let i = top; i < height; i++) {
+//       output.push(array[i][width])
+//     }
+//   
+//     for (let i = top; i <= height && output.length < cells; i++) {
+//       
+//     }
+//   
+//     for (let i = height; i >= top + 1; i--) {
+//       output.push(array[i][start])
+//     }
+//     
+//     width--
+//     height--
+//     top++
+//     start++
+//     
+//   }
+// 
+//   return output
+// }
 
 // array = [
 //   [1, 2, 3, 4],
@@ -1959,12 +2030,40 @@ const spiralTraversal = (array) => {
 //   [10, 9, 8, 7],
 // ]
 
-array = [
-  [19, 32, 33, 34, 25, 8],
-  [16, 15, 14, 13, 12, 11],
-  [18, 31, 36, 35, 26, 9],
-  [1, 2, 3, 4, 5, 6],
-  [20, 21, 22, 23, 24, 7],
-  [17, 30, 29, 28, 27, 10]
-]
-console.log(spiralTraversal(array))
+// array = [
+//   [19, 32, 33, 34, 25, 8],
+//   [16, 15, 14, 13, 12, 11],
+//   [18, 31, 36, 35, 26, 9],
+//   [1, 2, 3, 4, 5, 6],
+//   [20, 21, 22, 23, 24, 7],
+//   [17, 30, 29, 28, 27, 10]
+// ]
+
+// const array = [
+//   [ 1,  2,  3,  4,  5,  6],
+//   [20, 21, 22, 23, 24,  7],
+//   [19, 32, 33, 34, 25,  8],
+//   [18, 31, 36, 35, 26,  9],
+//   [17, 30, 29, 28, 27, 10],
+//   [16, 15, 14, 13, 12, 11]
+// ]
+
+// const array = [
+//   [1, 2, 3],
+//   [8, 9, 4],
+//   [7, 6, 5]
+// ]
+
+// console.log(spiralTraverse(array))
+
+
+// ______________________________
+// ______________________________
+// product of all but current
+
+const arrayOfProducts = () => {
+
+}
+
+array = [5, 1, 4, 2]
+console.log(arrayOfProducts(array))
