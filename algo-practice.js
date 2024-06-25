@@ -2084,26 +2084,26 @@
 // array = [5, 1, 4, 2]
 // console.log(arrayOfProducts(array))
 
-const arrayOfProducts = (array) => {
-  const output = []
-  let product = 1
-  
-  for (let i = 0; i < array.length; i++) {
-    output[i] = product
-    product *= array[i]
-  }
-
-  product = 1
-  for (let i = array.length - 1; i >= 0; i--) {
-    output[i] *= product
-    product *= array[i]
-  }
-
-  return output
-}
-
-array = [5,1,4,2]
-console.log(arrayOfProducts(array))
+// const arrayOfProducts = (array) => {
+//   const output = []
+//   let product = 1
+//   
+//   for (let i = 0; i < array.length; i++) {
+//     output[i] = product
+//     product *= array[i]
+//   }
+// 
+//   product = 1
+//   for (let i = array.length - 1; i >= 0; i--) {
+//     output[i] *= product
+//     product *= array[i]
+//   }
+// 
+//   return output
+// }
+// 
+// array = [5,1,4,2]
+// console.log(arrayOfProducts(array))
 
 
 // output 0 = 1
@@ -2121,4 +2121,38 @@ console.log(arrayOfProducts(array))
 // output 1 (5) *= product (8) = 40
 // product (8) *= 1 = 8
 // output 0 (1) *= product (8) = 8
+
+
+// ______________________________
+// ______________________________
+// max job profit
+
+const optimalFreelancing = (jobs) => {
+  const maxDays = jobs.sort((a, b) => a.deadline - b.deadline)[jobs.length - 1]['deadline'] - 1
+  const day = 0
+  const accepted = []
+
+  for (let job = 0; job < jobs.length; job++) {
+    if (jobs[job].deadline <= day + 1) {
+      if (accepted[day] !== undefined) {
+        console.log(accepted[day], jobs[job].payment)
+        if (accepted[day] < jobs[job].payment) {
+          accepted[day] = jobs[job].payment
+        }
+      } else {
+        accepted[day] = jobs[job].payment
+      }
+    }
+  }
+
+  return accepted
+}
+
+const jobs = [
+  {"deadline": 1, "payment": 1},
+  {"deadline": 2, "payment": 1},
+  {"deadline": 2, "payment": 2},
+]
+
+console.log(optimalFreelancing(jobs))
 
