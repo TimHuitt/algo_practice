@@ -2061,9 +2061,64 @@
 // ______________________________
 // product of all but current
 
-const arrayOfProducts = () => {
+// const arrayOfProducts = (array) => {
+//   let factors = Array.from(array)
+//   const output = []
+//   let current = 0
+//   while (output.length < array.length) {
+//     for (let i = 0; i < factors.length; i++) {
+//       if (i !== current) {
+//         if (output[current] === undefined) {
+//           output[current] = factors[i]
+//         } else {
+//           output[current] *= factors[i]
+//         }
+//         console.log(output)
+//       }
+//     }
+//     current++
+//   }
+//   return output
+// }
+// 
+// array = [5, 1, 4, 2]
+// console.log(arrayOfProducts(array))
 
+const arrayOfProducts = (array) => {
+  const output = []
+  let product = 1
+  
+  for (let i = 0; i < array.length; i++) {
+    output[i] = product
+    product *= array[i]
+  }
+
+  product = 1
+  for (let i = array.length - 1; i >= 0; i--) {
+    output[i] *= product
+    product *= array[i]
+  }
+
+  return output
 }
 
-array = [5, 1, 4, 2]
+array = [5,1,4,2]
 console.log(arrayOfProducts(array))
+
+
+// output 0 = 1
+// product (1) *= 5 = 5
+// output 1 = 5
+// product (5) *= 1 = 5
+// output 2 = 5
+// product (5) *= 4 = 20
+// output 3 = 20
+
+// output 3 (20) *= product (1) = 20
+// product (1) *= 2 = 2
+// output 2 (5) *= product (2) = 10
+// product (2) *= 4 = 8
+// output 1 (5) *= product (8) = 40
+// product (8) *= 1 = 8
+// output 0 (1) *= product (8) = 8
+
